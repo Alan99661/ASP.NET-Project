@@ -7,7 +7,7 @@ using VideoGameApplication.Models.BaseClasses;
 
 namespace VideoGameApplication.Models.Entities
 {
-    internal class Review : BaseModel
+    public class Review : BaseModel
     {
         public User User { get; set; }
         public Game Game { get; set; }

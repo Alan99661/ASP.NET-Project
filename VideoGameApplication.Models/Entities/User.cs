@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace VideoGameApplication.Models.Entities
 {
-    internal class User : IdentityUser
+    public class User : IdentityUser
     {
         public User()
         {

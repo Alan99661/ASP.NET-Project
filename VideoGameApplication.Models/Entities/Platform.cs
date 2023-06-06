@@ -7,7 +7,7 @@ using VideoGameApplication.Models.BaseClasses;
 
 namespace VideoGameApplication.Models.Entities
 {
-    internal class Platform : BaseModel
+    public class Platform : BaseModel
     {
         public string Name { get; set; }
         public List<Game> Games { get; set; }

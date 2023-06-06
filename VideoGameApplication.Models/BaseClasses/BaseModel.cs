@@ -7,7 +7,7 @@ using VideoGameApplication.Models.Interfaces;
 
 namespace VideoGameApplication.Models.BaseClasses
 {
-    internal class BaseModel : IBaseModel
+    public class BaseModel : IBaseModel
     {
         public BaseModel() 
         {
