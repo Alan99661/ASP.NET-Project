@@ -23,4 +23,17 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="CrudOperations\" />
+    <Folder Include="ViewModels\GameViewModels\" />
+    <Folder Include="ViewModels\GenreViewModels\" />
+    <Folder Include="ViewModels\ScreenshotViewModels\" />
+    <Folder Include="ViewModels\ReviewViewModels\" />
+    <Folder Include="ViewModels\PlatformViewModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VideoGameApplication.Models\VideoGameApplication.Models.csproj" />
+  </ItemGroup>
+
 </Project>

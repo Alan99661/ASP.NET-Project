@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VideoGameApplication.Models.Interfaces
+namespace VideoGameApplication.Servises.ViewModels.DeveloperViewModels
 {
-    internal interface IBaseModel
+    internal class DeveloperDeleteModel
     {
         public string Id { get; set; }
     }
