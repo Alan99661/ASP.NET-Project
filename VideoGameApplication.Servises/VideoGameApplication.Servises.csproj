@@ -28,7 +28,6 @@
     <Folder Include="ViewModels\GameViewModels\" />
     <Folder Include="ViewModels\ScreenshotViewModels\" />
     <Folder Include="ViewModels\ReviewViewModels\" />
-    <Folder Include="ViewModels\PlatformViewModels\" />
   </ItemGroup>
 
   <ItemGroup>
