@@ -26,7 +26,6 @@
   <ItemGroup>
     <Folder Include="CrudOperations\" />
     <Folder Include="ViewModels\GameViewModels\" />
-    <Folder Include="ViewModels\GenreViewModels\" />
     <Folder Include="ViewModels\ScreenshotViewModels\" />
     <Folder Include="ViewModels\ReviewViewModels\" />
     <Folder Include="ViewModels\PlatformViewModels\" />

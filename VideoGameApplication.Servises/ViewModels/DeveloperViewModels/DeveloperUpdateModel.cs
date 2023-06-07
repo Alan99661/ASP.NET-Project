@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VideoGameApplication.Servises.ViewModels.DeveloperViewModels
 {
-    internal class DeveloperUpdateModel
+    public class DeveloperUpdateModel
     {
         public string Id { get; set; }
         public string Name { get; set; }

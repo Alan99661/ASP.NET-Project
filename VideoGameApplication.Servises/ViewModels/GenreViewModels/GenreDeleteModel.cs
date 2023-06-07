@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VideoGameApplication.Servises.ViewModels.DeveloperViewModels
+namespace VideoGameApplication.Servises.ViewModels.GenreViewModels
 {
-    public class DeveloperDeleteModel
+    public class GenreDeleteModel
     {
         public string Id { get; set; }
     }

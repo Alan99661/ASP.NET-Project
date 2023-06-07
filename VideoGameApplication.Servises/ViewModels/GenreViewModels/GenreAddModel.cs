@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VideoGameApplication.Models.Entities;
 
-namespace VideoGameApplication.Servises.ViewModels.DeveloperViewModels
+namespace VideoGameApplication.Servises.ViewModels.GenreViewModels
 {
-    public class DeveloperAddModel
+    public class GenreAddModel
     {
         public string Name { get; set; }
         public List<string> GameIds { get; set; }

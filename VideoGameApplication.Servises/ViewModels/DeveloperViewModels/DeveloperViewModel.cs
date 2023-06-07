@@ -7,7 +7,7 @@ using VideoGameApplication.Models.Entities;
 
 namespace VideoGameApplication.Servises.ViewModels.DeveloperViewModels
 {
-    internal class DeveloperViewModel
+    public class DeveloperViewModel
     {
         public string Id { get; set; }
         public string Name { get; set; }
