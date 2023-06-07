@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VideoGameApplication.Servises.ViewModels.GenreViewModels
 {
-    public class PlatformAddModel
+    public class GenreAddModel
     {
         public string Name { get; set; }
         public List<string> GameIds { get; set; }
