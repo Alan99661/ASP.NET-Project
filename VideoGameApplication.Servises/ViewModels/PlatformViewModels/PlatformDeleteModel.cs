@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VideoGameApplication.Servises.ViewModels.PlatformViewModels
 {
-    internal class PlatformDeleteModel
+    public class PlatformDeleteModel
     {
         public string Id { get; set; }
     }

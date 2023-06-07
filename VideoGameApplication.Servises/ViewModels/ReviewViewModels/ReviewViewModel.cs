@@ -7,7 +7,7 @@ using VideoGameApplication.Models.Entities;
 
 namespace VideoGameApplication.Servises.ViewModels.ReviewViewModels
 {
-    internal class ReviewViewModel
+    public class ReviewViewModel
     {
         public string Id { get; set; }
         public User User { get; set; }

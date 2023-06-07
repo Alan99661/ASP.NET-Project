@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VideoGameApplication.Servises.ViewModels.ReviewViewModels
 {
-    internal class ReviewUpdateModel
+    public class ReviewUpdateModel
     {
         public string Id { get; set; }
         public string UserId { get; set; }

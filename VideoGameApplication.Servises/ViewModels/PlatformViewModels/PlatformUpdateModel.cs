@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VideoGameApplication.Servises.ViewModels.PlatformViewModels
 {
-    internal class PlatformUpdateModel
+    public class PlatformUpdateModel
     {
         public string Id { get; set; }
         public string Name { get; set; }

@@ -7,7 +7,7 @@ using VideoGameApplication.Models.Entities;
 
 namespace VideoGameApplication.Servises.ViewModels.ReviewViewModels
 {
-    internal class ReviewAddModel
+    public class ReviewAddModel
     {
         public string UserId { get; set; }
         public string GameId { get; set; }

@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VideoGameApplication.Servises.ViewModels.ReviewViewModels
+namespace VideoGameApplication.Servises.ViewModels.ScreenshotViewModels
 {
-    public class ReviewDeleteModel
+    public class ScreenshotViewModel
     {
         public string Id { get; set; }
+        public string Url { get; set; }
     }
 }
