@@ -34,6 +34,7 @@ namespace VideoGameApplication.Servises.MapConfig
             CreateMap<Review, ReviewAddModel>().ReverseMap();
             CreateMap<Review, ReviewUpdateModel>().ReverseMap();
             CreateMap<Screenshot, ScreenshotViewModel>().ReverseMap();
+            CreateMap<Screenshot, ScreenshotUpdateModel>().ReverseMap();
             CreateMap<Screenshot, ScreenshotAddModel>().ReverseMap();
         }
     }

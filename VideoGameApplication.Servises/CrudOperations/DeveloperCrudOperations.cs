@@ -2,104 +2,107 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VideoGameApplication.Database;
 using VideoGameApplication.Models.Entities;
-using VideoGameApplication.Servises.Contracts;
+using VideoGameApplication.Servises.ViewModels.DeveloperViewModels;
 using VideoGameApplication.Servises.ViewModels.ScreenshotViewModels;
 
 namespace VideoGameApplication.Servises.CrudOperations
 {
-    public class ScreenshotCrudOperations : IScreenshotCrudOperations
+    internal class DeveloperCrudOperations
     {
         private readonly VideoGameDBContext context;
         private readonly IMapper mapper;
 
-        public ScreenshotCrudOperations(VideoGameDBContext context, IMapper mapper)
+        public DeveloperCrudOperations(VideoGameDBContext context, IMapper mapper)
         {
             this.context = context;
             this.mapper = mapper;
         }
 
-        public List<ScreenshotViewModel> GetAll()
+        public List<DeveloperViewModel> GetAll()
         {
             try
             {
 
-                var res = context.Screenshots
+                var res = context.Developers
                     .Select(s => s)
-                    .Include(s => s.Game)
+                    .Include(s => s.Games)
                     .ToList();
 
-                return mapper.Map<List<ScreenshotViewModel>>(res);
+                return mapper.Map<List<DeveloperViewModel>>(res);
             }
             catch (Exception ex)
             {
                 throw new Exception("Failed");
             }
         }
-        public ScreenshotViewModel GetById(string id)
+        public DeveloperViewModel GetById(string id)
         {
             try
             {
 
 
-                var res = context.Screenshots
-                    .Include(s => s.Game)
+                var res = context.Developers
+                    .Include(s => s.Games)
                     .FirstOrDefault(s => s.Id == id);
 
-                return mapper.Map<ScreenshotViewModel>(res);
+                return mapper.Map<DeveloperViewModel>(res);
             }
             catch (Exception ex)
             {
                 throw new Exception("Failed");
             }
         }
-        public ScreenshotViewModel CreateScreenshot(ScreenshotAddModel addModel)
+        public DeveloperViewModel CreateDeveloper(DeveloperAddModel addModel)
         {
             try
             {
 
-                var screenshot = mapper.Map<Screenshot>(addModel);
-                var game = context.Games.FirstOrDefault(s => s.Id == addModel.GameId);
-                screenshot.Game = game;
-                context.Screenshots.Add(screenshot);
+                var dev = mapper.Map<Developer>(addModel);
+                var games = context.Games
+                    .Where(e => addModel.GameIds.Contains(e.Id))
+                    .ToList();
+                dev.Games = games;
+                context.Developers.Add(dev);
                 context.SaveChanges();
 
-                return mapper.Map<ScreenshotViewModel>(screenshot);
+                return mapper.Map<DeveloperViewModel>(dev);
             }
             catch (Exception ex)
             {
                 throw new Exception("Failed");
             }
         }
-        public ScreenshotViewModel UpdateScreenshot(ScreenshotUpdateModel updateModel)
+        public DeveloperViewModel UpdeteDeveloper(DeveloperUpdateModel updateModel)
         {
             try
             {
-                var screenshot = context.Screenshots.FirstOrDefault(s => s.Id == updateModel.Id);
-                var game = context.Games.FirstOrDefault(s => s.Id == updateModel.GameId);
-                screenshot.Url = updateModel.Url;
-                screenshot.Game = game;
-                context.Update(screenshot);
+                var dev = context.Developers.FirstOrDefault(s => s.Id == updateModel.Id);
+                var games = context.Games
+                   .Where(e => updateModel.GameIds.Contains(e.Id))
+                   .ToList();
+                dev.Games = games;
+                dev.Name = updateModel.Name;
+                context.Update(dev);
                 context.SaveChanges();
 
-                return mapper.Map<ScreenshotViewModel>(screenshot);
+                return mapper.Map<DeveloperViewModel>(dev);
             }
             catch (Exception ex)
             {
                 throw new Exception("Failed");
             }
         }
-        public string DeleteScreenshot(ScreenshotDeleteModel deleteModel)
+        public string DeleteDeveloper(DeveloperDeleteModel deleteModel)
         {
             try
             {
-                var screenshot = context.Screenshots.FirstOrDefault(s => s.Id == deleteModel.Id);
-                context.Remove(screenshot);
+                var dev = context.Developers.FirstOrDefault(s => s.Id == deleteModel.Id);
+                context.Remove(dev);
                 context.SaveChanges();
 
                 return "Sucsess";
@@ -111,3 +114,4 @@ namespace VideoGameApplication.Servises.CrudOperations
         }
     }
 }
+
