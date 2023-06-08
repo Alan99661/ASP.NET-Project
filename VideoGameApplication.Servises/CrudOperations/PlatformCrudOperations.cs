@@ -8,102 +8,101 @@ using System.Threading.Tasks;
 using VideoGameApplication.Database;
 using VideoGameApplication.Models.Entities;
 using VideoGameApplication.Servises.Contracts;
-using VideoGameApplication.Servises.ViewModels.DeveloperViewModels;
-using VideoGameApplication.Servises.ViewModels.ScreenshotViewModels;
+using VideoGameApplication.Servises.ViewModels.PlatformViewModels;
 
 namespace VideoGameApplication.Servises.CrudOperations
 {
-    public class DeveloperCrudOperations : IDeveloperCrudOperations
+    public class PlatformCrudOperations : IPlatformCrudOperations
     {
         private readonly VideoGameDBContext context;
         private readonly IMapper mapper;
 
-        public DeveloperCrudOperations(VideoGameDBContext context, IMapper mapper)
+        public PlatformCrudOperations(VideoGameDBContext context, IMapper mapper)
         {
             this.context = context;
             this.mapper = mapper;
         }
 
-        public List<DeveloperViewModel> GetAll()
+        public List<PlatformViewModel> GetAll()
         {
             try
             {
 
-                var res = context.Developers
+                var res = context.Platforms
                     .Select(s => s)
                     .Include(s => s.Games)
                     .ToList();
 
-                return mapper.Map<List<DeveloperViewModel>>(res);
+                return mapper.Map<List<PlatformViewModel>>(res);
             }
             catch (Exception ex)
             {
                 throw new Exception("Failed");
             }
         }
-        public DeveloperViewModel GetById(string id)
+        public PlatformViewModel GetById(string id)
         {
             try
             {
 
 
-                var res = context.Developers
+                var res = context.Platforms
                     .Include(s => s.Games)
                     .FirstOrDefault(s => s.Id == id);
 
-                return mapper.Map<DeveloperViewModel>(res);
+                return mapper.Map<PlatformViewModel>(res);
             }
             catch (Exception ex)
             {
                 throw new Exception("Failed");
             }
         }
-        public DeveloperViewModel CreateDeveloper(DeveloperAddModel addModel)
+        public PlatformViewModel CreatePlatform(PlatformAddModel addModel)
         {
             try
             {
 
-                var dev = mapper.Map<Developer>(addModel);
+                var Platform = mapper.Map<Platform>(addModel);
                 var games = context.Games
                     .Where(e => addModel.GameIds.Contains(e.Id))
                     .ToList();
-                dev.Games = games;
-                context.Developers.Add(dev);
+                Platform.Games = games;
+                context.Platforms.Add(Platform);
                 context.SaveChanges();
 
-                return mapper.Map<DeveloperViewModel>(dev);
+                return mapper.Map<PlatformViewModel>(Platform);
             }
             catch (Exception ex)
             {
                 throw new Exception("Failed");
             }
         }
-        public DeveloperViewModel UpdeteDeveloper(DeveloperUpdateModel updateModel)
+        public PlatformViewModel UpdetePlatform(PlatformUpdateModel updateModel)
         {
             try
             {
-                var dev = context.Developers.FirstOrDefault(s => s.Id == updateModel.Id);
+                var Platform = context.Platforms.FirstOrDefault(s => s.Id == updateModel.Id);
                 var games = context.Games
                    .Where(e => updateModel.GameIds.Contains(e.Id))
                    .ToList();
-                dev.Games = games;
-                dev.Name = updateModel.Name;
-                context.Update(dev);
+                Platform.Games = games;
+                Platform.Name = updateModel.Name;
+                context.Update(Platform);
                 context.SaveChanges();
 
-                return mapper.Map<DeveloperViewModel>(dev);
+                return mapper.Map<PlatformViewModel>(Platform);
             }
             catch (Exception ex)
             {
                 throw new Exception("Failed");
             }
         }
-        public string DeleteDeveloper(DeveloperDeleteModel deleteModel)
+        public string DeletePlatform(PlatformDeleteModel deleteModel)
         {
             try
             {
-                var dev = context.Developers.FirstOrDefault(s => s.Id == deleteModel.Id);
-                context.Remove(dev);
+                var Platform = context.Platforms.FirstOrDefault(s => s.Id == deleteModel.Id);
+                context.Remove(Platform);
                 context.SaveChanges();
 
                 return "Sucsess";
@@ -115,4 +114,3 @@ namespace VideoGameApplication.Servises.CrudOperations
         }
     }
 }
-

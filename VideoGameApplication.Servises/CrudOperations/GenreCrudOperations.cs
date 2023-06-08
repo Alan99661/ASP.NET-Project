@@ -8,102 +8,101 @@ using System.Threading.Tasks;
 using VideoGameApplication.Database;
 using VideoGameApplication.Models.Entities;
 using VideoGameApplication.Servises.Contracts;
-using VideoGameApplication.Servises.ViewModels.DeveloperViewModels;
-using VideoGameApplication.Servises.ViewModels.ScreenshotViewModels;
+using VideoGameApplication.Servises.ViewModels.GenreViewModels;
 
 namespace VideoGameApplication.Servises.CrudOperations
 {
-    public class DeveloperCrudOperations : IDeveloperCrudOperations
+    public class GenreCrudOperations : IGenreCrudOperations
     {
         private readonly VideoGameDBContext context;
         private readonly IMapper mapper;
 
-        public DeveloperCrudOperations(VideoGameDBContext context, IMapper mapper)
+        public GenreCrudOperations(VideoGameDBContext context, IMapper mapper)
         {
             this.context = context;
             this.mapper = mapper;
         }
 
-        public List<DeveloperViewModel> GetAll()
+        public List<GenreViewModel> GetAll()
         {
             try
             {
 
-                var res = context.Developers
+                var res = context.Genres
                     .Select(s => s)
                     .Include(s => s.Games)
                     .ToList();
 
-                return mapper.Map<List<DeveloperViewModel>>(res);
+                return mapper.Map<List<GenreViewModel>>(res);
             }
             catch (Exception ex)
             {
                 throw new Exception("Failed");
             }
         }
-        public DeveloperViewModel GetById(string id)
+        public GenreViewModel GetById(string id)
         {
             try
             {
 
 
-                var res = context.Developers
+                var res = context.Genres
                     .Include(s => s.Games)
                     .FirstOrDefault(s => s.Id == id);
 
-                return mapper.Map<DeveloperViewModel>(res);
+                return mapper.Map<GenreViewModel>(res);
             }
             catch (Exception ex)
             {
                 throw new Exception("Failed");
             }
         }
-        public DeveloperViewModel CreateDeveloper(DeveloperAddModel addModel)
+        public GenreViewModel CreateGenre(GenreAddModel addModel)
         {
             try
             {
 
-                var dev = mapper.Map<Developer>(addModel);
+                var genre = mapper.Map<Genre>(addModel);
                 var games = context.Games
                     .Where(e => addModel.GameIds.Contains(e.Id))
                     .ToList();
-                dev.Games = games;
-                context.Developers.Add(dev);
+                genre.Games = games;
+                context.Genres.Add(genre);
                 context.SaveChanges();
 
-                return mapper.Map<DeveloperViewModel>(dev);
+                return mapper.Map<GenreViewModel>(genre);
             }
             catch (Exception ex)
             {
                 throw new Exception("Failed");
             }
         }
-        public DeveloperViewModel UpdeteDeveloper(DeveloperUpdateModel updateModel)
+        public GenreViewModel UpdeteGenre(GenreUpdateModel updateModel)
         {
             try
             {
-                var dev = context.Developers.FirstOrDefault(s => s.Id == updateModel.Id);
+                var genre = context.Genres.FirstOrDefault(s => s.Id == updateModel.Id);
                 var games = context.Games
                    .Where(e => updateModel.GameIds.Contains(e.Id))
                    .ToList();
-                dev.Games = games;
-                dev.Name = updateModel.Name;
-                context.Update(dev);
+                genre.Games = games;
+                genre.Name = updateModel.Name;
+                context.Update(genre);
                 context.SaveChanges();
 
-                return mapper.Map<DeveloperViewModel>(dev);
+                return mapper.Map<GenreViewModel>(genre);
             }
             catch (Exception ex)
             {
                 throw new Exception("Failed");
             }
         }
-        public string DeleteDeveloper(DeveloperDeleteModel deleteModel)
+        public string DeleteGenre(GenreDeleteModel deleteModel)
         {
             try
             {
-                var dev = context.Developers.FirstOrDefault(s => s.Id == deleteModel.Id);
-                context.Remove(dev);
+                var genre = context.Genres.FirstOrDefault(s => s.Id == deleteModel.Id);
+                context.Remove(genre);
                 context.SaveChanges();
 
                 return "Sucsess";
