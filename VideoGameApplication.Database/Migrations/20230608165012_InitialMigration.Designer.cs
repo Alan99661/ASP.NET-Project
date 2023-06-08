@@ -12,7 +12,7 @@ using VideoGameApplication.Database;
 namespace VideoGameApplication.Database.Migrations
 {
     [DbContext(typeof(VideoGameDBContext))]
-    [Migration("20230606153400_InitialMigration")]
+    [Migration("20230608165012_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -214,9 +214,6 @@ namespace VideoGameApplication.Database.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("ModifiedAt")
                         .HasColumnType("datetime2");
 
@@ -234,6 +231,10 @@ namespace VideoGameApplication.Database.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("BackgroundImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
@@ -241,6 +242,10 @@ namespace VideoGameApplication.Database.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GameWebsite")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("MetacriticRating")
@@ -254,7 +259,7 @@ namespace VideoGameApplication.Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ReleaseDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.HasKey("Id");
 
@@ -353,6 +358,7 @@ namespace VideoGameApplication.Database.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("GameId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime?>("ModifiedAt")
@@ -381,12 +387,6 @@ namespace VideoGameApplication.Database.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DeletedAt")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -399,9 +399,6 @@ namespace VideoGameApplication.Database.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
-
-                    b.Property<DateTime>("ModifiedAt")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -558,9 +555,13 @@ namespace VideoGameApplication.Database.Migrations
 
             modelBuilder.Entity("VideoGameApplication.Models.Entities.Screenshot", b =>
                 {
-                    b.HasOne("VideoGameApplication.Models.Entities.Game", null)
+                    b.HasOne("VideoGameApplication.Models.Entities.Game", "Game")
                         .WithMany("Screenshots")
-                        .HasForeignKey("GameId");
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Game");
                 });
 
             modelBuilder.Entity("VideoGameApplication.Models.Entities.Game", b =>

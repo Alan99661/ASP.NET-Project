@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using VideoGameApplication.Database.Configuring;
 using VideoGameApplication.Models.Entities;
 
 namespace VideoGameApplication.Database
@@ -17,33 +18,11 @@ namespace VideoGameApplication.Database
         public DbSet<Platform> Platforms { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Screenshot> Screenshots { get; set; }
+        //public DbSet<BackgroundImage> BackgroundImages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Game>(e =>
-            {
-                e.HasKey(e => e.Id);
-            });
-            modelBuilder.Entity<Developer>(e =>
-            {
-                e.HasKey(e => e.Id);
-            });
-            modelBuilder.Entity<Genre>(e =>
-            {
-                e.HasKey(e => e.Id);
-            });
-            modelBuilder.Entity<Platform>(e =>
-            {
-                e.HasKey(e => e.Id);
-            });
-            modelBuilder.Entity<Review>(e =>
-            {
-                e.HasKey(e => e.Id);
-            });
-            modelBuilder.Entity<Screenshot>(e =>
-            {
-                e.HasKey(e => e.Id);
-            });
+            modelBuilder.ConfigureFluentApi();
             base.OnModelCreating(modelBuilder);
         }
     }

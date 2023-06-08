@@ -8,6 +8,6 @@ namespace VideoGameApplication.Servises.ViewModels.ScreenshotViewModels
 {
     public class ScreenshotDeleteModel
     {
-        public string ScreenshotId { get; set; }
+        public string Id { get; set; }
     }
 }

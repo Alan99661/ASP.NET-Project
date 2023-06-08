@@ -10,6 +10,6 @@ namespace VideoGameApplication.Servises.ViewModels.DeveloperViewModels
     {
         public string Id { get; set; }
         public string Name { get; set; }
-        public List<string> GameIds { get; set; }
+        public List<string>? GameIds { get; set; }
     }
 }

@@ -10,6 +10,6 @@ namespace VideoGameApplication.Servises.ViewModels.DeveloperViewModels
     public class DeveloperAddModel
     {
         public string Name { get; set; }
-        public List<string> GameIds { get; set; }
+        public List<string>? GameIds { get; set; }
     }
 }

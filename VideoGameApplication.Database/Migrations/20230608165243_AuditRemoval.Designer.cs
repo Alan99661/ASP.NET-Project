@@ -12,8 +12,8 @@ using VideoGameApplication.Database;
 namespace VideoGameApplication.Database.Migrations
 {
     [DbContext(typeof(VideoGameDBContext))]
-    [Migration("20230607191248_GameChanges")]
-    partial class GameChanges
+    [Migration("20230608165243_AuditRemoval")]
+    partial class AuditRemoval
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -208,15 +208,6 @@ namespace VideoGameApplication.Database.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -231,11 +222,9 @@ namespace VideoGameApplication.Database.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("BackgroundImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -247,22 +236,14 @@ namespace VideoGameApplication.Database.Migrations
                     b.Property<int?>("MetacriticRating")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ReleaseDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ScreenshotId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("date");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ScreenshotId");
 
                     b.ToTable("Games");
                 });
@@ -271,15 +252,6 @@ namespace VideoGameApplication.Database.Migrations
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -294,15 +266,6 @@ namespace VideoGameApplication.Database.Migrations
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -322,18 +285,9 @@ namespace VideoGameApplication.Database.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("GameId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -352,17 +306,9 @@ namespace VideoGameApplication.Database.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedAt")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("GameId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("ModifiedAt")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Url")
                         .IsRequired()
@@ -536,15 +482,6 @@ namespace VideoGameApplication.Database.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("VideoGameApplication.Models.Entities.Game", b =>
-                {
-                    b.HasOne("VideoGameApplication.Models.Entities.Screenshot", "Screenshot")
-                        .WithMany()
-                        .HasForeignKey("ScreenshotId");
-
-                    b.Navigation("Screenshot");
-                });
-
             modelBuilder.Entity("VideoGameApplication.Models.Entities.Review", b =>
                 {
                     b.HasOne("VideoGameApplication.Models.Entities.Game", "Game")
@@ -564,9 +501,13 @@ namespace VideoGameApplication.Database.Migrations
 
             modelBuilder.Entity("VideoGameApplication.Models.Entities.Screenshot", b =>
                 {
-                    b.HasOne("VideoGameApplication.Models.Entities.Game", null)
+                    b.HasOne("VideoGameApplication.Models.Entities.Game", "Game")
                         .WithMany("Screenshots")
-                        .HasForeignKey("GameId");
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Game");
                 });
 
             modelBuilder.Entity("VideoGameApplication.Models.Entities.Game", b =>

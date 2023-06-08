@@ -9,6 +9,6 @@ namespace VideoGameApplication.Servises.ViewModels.PlatformViewModels
     public class PlatformAddModel
     {
         public string Name { get; set; }
-        public List<string> GameIds { get; set; }
+        public List<string>? GameIds { get; set; }
     }
 }

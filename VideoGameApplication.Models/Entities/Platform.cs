@@ -10,7 +10,7 @@ namespace VideoGameApplication.Models.Entities
     public class Platform : BaseModel
     {
         public string Name { get; set; }
-        public List<Game> Games { get; set; }
+        public List<Game>? Games { get; set; }
 
     }
 }

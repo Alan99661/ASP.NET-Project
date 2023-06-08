@@ -10,5 +10,6 @@ namespace VideoGameApplication.Servises.ViewModels.ScreenshotViewModels
     {
         public string Id { get; set; }
         public string Url { get; set; }
+        public string GameId { get; set; }
     }
 }
