@@ -98,11 +98,11 @@ namespace VideoGameApplication.Servises.CrudOperations
                 throw new Exception("Failed");
             }
         }
-        public string DeleteDeveloper(DeveloperDeleteModel deleteModel)
+        public string DeleteDeveloper(string id)
         {
             try
             {
-                var dev = context.Developers.FirstOrDefault(s => s.Id == deleteModel.Id);
+                var dev = context.Developers.FirstOrDefault(s => s.Id == id);
                 context.Remove(dev);
                 context.SaveChanges();
 

@@ -5,7 +5,7 @@ namespace VideoGameApplication.Servises.Contracts
     public interface IDeveloperCrudOperations
     {
         DeveloperViewModel CreateDeveloper(DeveloperAddModel addModel);
-        string DeleteDeveloper(DeveloperDeleteModel deleteModel);
+        string DeleteDeveloper(string id);
         List<DeveloperViewModel> GetAll();
         DeveloperViewModel GetById(string id);
         DeveloperViewModel UpdeteDeveloper(DeveloperUpdateModel updateModel);
