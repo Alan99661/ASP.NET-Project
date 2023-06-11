@@ -2,6 +2,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using VideoGameApplication.Database;
 using VideoGameApplication.Servises.Contracts.CrudOperations;
+using VideoGameApplication.Servises.Contracts.Other;
 using VideoGameApplication.Servises.Contracts.UpdateModelGet;
 using VideoGameApplication.Servises.CrudOperations;
 using VideoGameApplication.Servises.MapConfig;
@@ -18,6 +19,8 @@ builder.Services.AddDbContext<VideoGameDBContext>(options => options.UseSqlServe
 builder.Services.AddAutoMapper(typeof(MapConfiguration));
 builder.Services.AddScoped<IDeveloperCrudOperations, DeveloperCrudOperations>();
 builder.Services.AddScoped<IGetUpdateModels, GetUpdateModels>();
+builder.Services.AddScoped<IGetSelectModels, GetSelectModels>();
+
 
 var app = builder.Build();
 

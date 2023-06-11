@@ -2,7 +2,7 @@
 
 namespace VideoGameApplication.Servises.Contracts.CrudOperations
 {
-    internal interface IGameCrudOperations
+    public interface IGameCrudOperations
     {
         GameViewModel CreateGame(GameAddModel addModel);
         string DeleteGame(string id);

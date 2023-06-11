@@ -2,7 +2,7 @@
 
 namespace VideoGameApplication.Servises.Contracts.CrudOperations
 {
-    internal interface IReviewCrudOperations
+    public interface IReviewCrudOperations
     {
         ReviewViewModel CreateReview(ReviewAddModel addModel);
         string DeleteScreenshot(string id);

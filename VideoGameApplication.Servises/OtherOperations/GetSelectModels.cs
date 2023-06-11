@@ -5,11 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VideoGameApplication.Database;
+using VideoGameApplication.Servises.Contracts.Other;
 using VideoGameApplication.Servises.ViewModels.SelectModels;
 
 namespace VideoGameApplication.Servises.OtherOperations
 {
-    public class GetSelectModels
+    public class GetSelectModels : IGetSelectModels
     {
         private readonly VideoGameDBContext context;
         private readonly IMapper mapper;
@@ -22,7 +23,7 @@ namespace VideoGameApplication.Servises.OtherOperations
 
         public List<SelectModel> GetDeveloperSelectModels()
         {
-            var res = context.Developers.Select(s =>s).ToList();
+            var res = context.Developers.Select(s => s).ToList();
             return mapper.Map<List<SelectModel>>(res);
         }
         public List<SelectModel> GetGamesSelectModels()
