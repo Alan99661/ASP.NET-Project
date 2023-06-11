@@ -13,7 +13,7 @@ using VideoGameApplication.Servises.ViewModels.GameViewModels;
 
 namespace VideoGameApplication.Servises.CrudOperations
 {
-    internal class GameCrudOperations : IGameCrudOperations
+    public class GameCrudOperations : IGameCrudOperations
     {
         private readonly VideoGameDBContext context;
         private readonly IMapper mapper;

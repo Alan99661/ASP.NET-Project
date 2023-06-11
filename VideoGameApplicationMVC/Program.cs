@@ -18,6 +18,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<VideoGameDBContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddAutoMapper(typeof(MapConfiguration));
 builder.Services.AddScoped<IDeveloperCrudOperations, DeveloperCrudOperations>();
+builder.Services.AddScoped<IGameCrudOperations, GameCrudOperations>();
 builder.Services.AddScoped<IGetUpdateModels, GetUpdateModels>();
 builder.Services.AddScoped<IGetSelectModels, GetSelectModels>();
 

@@ -13,7 +13,7 @@ using VideoGameApplication.Servises.ViewModels.ScreenshotViewModels;
 
 namespace VideoGameApplication.Servises.CrudOperations
 {
-    internal class ReviewCrudOperations : IReviewCrudOperations
+    public class ReviewCrudOperations : IReviewCrudOperations
 
     {
         private readonly VideoGameDBContext context;
@@ -100,11 +100,11 @@ namespace VideoGameApplication.Servises.CrudOperations
                 throw new Exception("Failed");
             }
         }
-        public string DeleteScreenshot(ReviewDeleteModel deleteModel)
+        public string DeleteScreenshot(string id)
         {
             try
             {
-                var review = context.Reviews.FirstOrDefault(s => s.Id == deleteModel.Id);
+                var review = context.Reviews.FirstOrDefault(s => s.Id == id);
                 context.Remove(review);
                 context.SaveChanges();
 

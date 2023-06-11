@@ -94,11 +94,11 @@ namespace VideoGameApplication.Servises.CrudOperations
                 throw new Exception("Failed");
             }
         }
-        public string DeleteScreenshot(ScreenshotDeleteModel deleteModel)
+        public string DeleteScreenshot(string id)
         {
             try
             {
-                var screenshot = context.Screenshots.FirstOrDefault(s => s.Id == deleteModel.Id);
+                var screenshot = context.Screenshots.FirstOrDefault(s => s.Id == id);
                 context.Remove(screenshot);
                 context.SaveChanges();
 

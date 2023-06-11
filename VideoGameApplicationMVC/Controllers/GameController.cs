@@ -13,10 +13,10 @@ namespace VideoGameApplicationMVC.Controllers
         private readonly IGetUpdateModels _getUpdateModels;
         private readonly IGetSelectModels _getSelectModel;
 
-        public GameController(IGameCrudOperations operations, IGetUpdateModels getDevUpdateModel, IGetSelectModels getSelectModel)
+        public GameController(IGameCrudOperations operations, IGetUpdateModels getUpdateModels, IGetSelectModels getSelectModel)
         {
             this._operations = operations;
-            _getDevUpdateModel = getDevUpdateModel;
+            _getUpdateModels = getUpdateModels;
             _getSelectModel = getSelectModel;
         }
 
