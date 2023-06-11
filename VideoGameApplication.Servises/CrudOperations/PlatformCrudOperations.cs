@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VideoGameApplication.Database;
 using VideoGameApplication.Models.Entities;
-using VideoGameApplication.Servises.Contracts;
+using VideoGameApplication.Servises.Contracts.CrudOperations;
 using VideoGameApplication.Servises.ViewModels.PlatformViewModels;
 
 namespace VideoGameApplication.Servises.CrudOperations
@@ -97,11 +97,11 @@ namespace VideoGameApplication.Servises.CrudOperations
                 throw new Exception("Failed");
             }
         }
-        public string DeletePlatform(PlatformDeleteModel deleteModel)
+        public string DeletePlatform(string id)
         {
             try
             {
-                var Platform = context.Platforms.FirstOrDefault(s => s.Id == deleteModel.Id);
+                var Platform = context.Platforms.FirstOrDefault(s => s.Id == id);
                 context.Remove(Platform);
                 context.SaveChanges();
 

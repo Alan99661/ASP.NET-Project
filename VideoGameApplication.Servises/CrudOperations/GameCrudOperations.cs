@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VideoGameApplication.Database;
 using VideoGameApplication.Models.Entities;
-using VideoGameApplication.Servises.Contracts;
+using VideoGameApplication.Servises.Contracts.CrudOperations;
 using VideoGameApplication.Servises.ViewModels.GameViewModels;
 
 namespace VideoGameApplication.Servises.CrudOperations
@@ -159,11 +159,11 @@ namespace VideoGameApplication.Servises.CrudOperations
             }
         }
 
-        public string DeleteGame(GameDeleteModel model)
+        public string DeleteGame(string id)
         {
             try
             {
-                var res = context.Games.FirstOrDefault(s => s.Id == model.Id);
+                var res = context.Games.FirstOrDefault(s => s.Id == id);
                 context.Remove(res);
                 context.SaveChanges();
 

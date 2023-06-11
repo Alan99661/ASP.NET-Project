@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VideoGameApplication.Database;
 using VideoGameApplication.Models.Entities;
-using VideoGameApplication.Servises.Contracts;
+using VideoGameApplication.Servises.Contracts.CrudOperations;
 using VideoGameApplication.Servises.ViewModels.GenreViewModels;
 
 namespace VideoGameApplication.Servises.CrudOperations
@@ -97,11 +97,11 @@ namespace VideoGameApplication.Servises.CrudOperations
                 throw new Exception("Failed");
             }
         }
-        public string DeleteGenre(GenreDeleteModel deleteModel)
+        public string DeleteGenre(string id)
         {
             try
             {
-                var genre = context.Genres.FirstOrDefault(s => s.Id == deleteModel.Id);
+                var genre = context.Genres.FirstOrDefault(s => s.Id == id);
                 context.Remove(genre);
                 context.SaveChanges();
 

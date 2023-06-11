@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using VideoGameApplication.Servises.Contracts;
+using VideoGameApplication.Servises.Contracts.CrudOperations;
+using VideoGameApplication.Servises.Contracts.UpdateModelGet;
 using VideoGameApplication.Servises.ViewModels.DeveloperViewModels;
 
 namespace VideoGameApplicationMVC.Controllers
@@ -8,10 +9,12 @@ namespace VideoGameApplicationMVC.Controllers
     public class DeveloperController : Controller
     {
         private readonly IDeveloperCrudOperations _operations;
+        private readonly IGetUpdateModels _getDevUpdateModel;
 
-        public DeveloperController(IDeveloperCrudOperations developerCrudOperations)
+        public DeveloperController(IDeveloperCrudOperations developerCrudOperations, IGetUpdateModels getDevUpdateModel)
         {
             _operations = developerCrudOperations;
+            _getDevUpdateModel = getDevUpdateModel;
         }
 
         public IActionResult Index()
@@ -37,9 +40,10 @@ namespace VideoGameApplicationMVC.Controllers
             var res = _operations.CreateDeveloper(model);
             return Redirect("/Developer/GetById/" + res.Id);
         }
-        public IActionResult UpdateDeveloper()
+        public IActionResult UpdateDeveloper(string id)
         {
-            return View();
+            var model = _getDevUpdateModel.GetDevUpdateModel(id);
+            return View(model);
         }
         public IActionResult UpdateDeveloperPost(DeveloperUpdateModel model)
         {

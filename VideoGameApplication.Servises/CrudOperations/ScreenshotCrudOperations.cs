@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VideoGameApplication.Database;
 using VideoGameApplication.Models.Entities;
-using VideoGameApplication.Servises.Contracts;
+using VideoGameApplication.Servises.Contracts.CrudOperations;
 using VideoGameApplication.Servises.ViewModels.ScreenshotViewModels;
 
 namespace VideoGameApplication.Servises.CrudOperations

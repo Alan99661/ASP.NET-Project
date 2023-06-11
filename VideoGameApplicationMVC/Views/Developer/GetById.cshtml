@@ -1,0 +1,6 @@
+﻿@model DeveloperViewModel
+
+<h1>@Model.Name</h1>
+@foreach(var game in Model.Games){
+	<p>@game.Name</p>
+}

@@ -1,5 +1,11 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using VideoGameApplication.Database;
+using VideoGameApplication.Servises.Contracts.CrudOperations;
+using VideoGameApplication.Servises.Contracts.UpdateModelGet;
+using VideoGameApplication.Servises.CrudOperations;
+using VideoGameApplication.Servises.MapConfig;
+using VideoGameApplication.Servises.OtherOperations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +15,9 @@ builder.Services.AddControllersWithViews();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
     throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<VideoGameDBContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddAutoMapper(typeof(MapConfiguration));
+builder.Services.AddScoped<IDeveloperCrudOperations, DeveloperCrudOperations>();
+builder.Services.AddScoped<IGetUpdateModels, GetUpdateModels>();
 
 var app = builder.Build();
 

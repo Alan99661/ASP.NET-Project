@@ -1,6 +1,6 @@
 ﻿using VideoGameApplication.Servises.ViewModels.ReviewViewModels;
 
-namespace VideoGameApplication.Servises.Contracts
+namespace VideoGameApplication.Servises.Contracts.CrudOperations
 {
     internal interface IReviewCrudOperations
     {

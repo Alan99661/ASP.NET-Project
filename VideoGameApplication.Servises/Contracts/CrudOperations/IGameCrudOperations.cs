@@ -1,6 +1,6 @@
 ﻿using VideoGameApplication.Servises.ViewModels.GameViewModels;
 
-namespace VideoGameApplication.Servises.Contracts
+namespace VideoGameApplication.Servises.Contracts.CrudOperations
 {
     internal interface IGameCrudOperations
     {

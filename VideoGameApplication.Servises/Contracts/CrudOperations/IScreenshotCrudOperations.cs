@@ -1,6 +1,6 @@
 ﻿using VideoGameApplication.Servises.ViewModels.ScreenshotViewModels;
 
-namespace VideoGameApplication.Servises.Contracts
+namespace VideoGameApplication.Servises.Contracts.CrudOperations
 {
     public interface IScreenshotCrudOperations
     {

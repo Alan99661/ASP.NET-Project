@@ -1,6 +1,6 @@
 ﻿using VideoGameApplication.Servises.ViewModels.DeveloperViewModels;
 
-namespace VideoGameApplication.Servises.Contracts
+namespace VideoGameApplication.Servises.Contracts.CrudOperations
 {
     public interface IDeveloperCrudOperations
     {

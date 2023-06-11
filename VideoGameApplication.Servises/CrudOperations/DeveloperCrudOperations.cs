@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VideoGameApplication.Database;
 using VideoGameApplication.Models.Entities;
-using VideoGameApplication.Servises.Contracts;
+using VideoGameApplication.Servises.Contracts.CrudOperations;
 using VideoGameApplication.Servises.ViewModels.DeveloperViewModels;
 using VideoGameApplication.Servises.ViewModels.ScreenshotViewModels;
 
@@ -64,10 +65,13 @@ namespace VideoGameApplication.Servises.CrudOperations
             {
 
                 var dev = mapper.Map<Developer>(addModel);
-                var games = context.Games
-                    .Where(e => addModel.GameIds.Contains(e.Id))
-                    .ToList();
-                dev.Games = games;
+                if (!addModel.GameIds.IsNullOrEmpty())
+                {
+                    var games = context.Games
+                        .Where(e => addModel.GameIds.Contains(e.Id))
+                        .ToList();
+                    dev.Games = games;
+                }
                 context.Developers.Add(dev);
                 context.SaveChanges();
 
@@ -83,10 +87,13 @@ namespace VideoGameApplication.Servises.CrudOperations
             try
             {
                 var dev = context.Developers.FirstOrDefault(s => s.Id == updateModel.Id);
+                if (updateModel.GameIds != null)
+                {
                 var games = context.Games
                    .Where(e => updateModel.GameIds.Contains(e.Id))
                    .ToList();
                 dev.Games = games;
+                }
                 dev.Name = updateModel.Name;
                 context.Update(dev);
                 context.SaveChanges();

@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Developer\GetById.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
@@ -27,6 +31,10 @@
     <ProjectReference Include="..\VideoGameApplication.Database\VideoGameApplication.Database.csproj" />
     <ProjectReference Include="..\VideoGameApplication.Models\VideoGameApplication.Models.csproj" />
     <ProjectReference Include="..\VideoGameApplication.Servises\VideoGameApplication.Servises.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Developer\GetById.cshtml" />
   </ItemGroup>
 
 </Project>
