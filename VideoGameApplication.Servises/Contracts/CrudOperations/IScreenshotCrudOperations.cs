@@ -5,7 +5,7 @@ namespace VideoGameApplication.Servises.Contracts.CrudOperations
     public interface IScreenshotCrudOperations
     {
         ScreenshotViewModel CreateScreenshot(ScreenshotAddModel addModel);
-        string DeleteScreenshot(ScreenshotDeleteModel deleteModel);
+        string DeleteScreenshot(string id);
         List<ScreenshotViewModel> GetAll();
         ScreenshotViewModel GetById(string id);
         ScreenshotViewModel UpdateScreenshot(ScreenshotUpdateModel updateModel);

@@ -5,7 +5,7 @@ namespace VideoGameApplication.Servises.Contracts.CrudOperations
     internal interface IReviewCrudOperations
     {
         ReviewViewModel CreateReview(ReviewAddModel addModel);
-        string DeleteScreenshot(ReviewDeleteModel deleteModel);
+        string DeleteScreenshot(string id);
         List<ReviewViewModel> GetAll();
         ReviewViewModel GetById(string id);
         ReviewViewModel UpdateReview(ReviewUpdateModel updateModel);
