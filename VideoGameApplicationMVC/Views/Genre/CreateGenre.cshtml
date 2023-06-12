@@ -1,8 +1,6 @@
-﻿
-@model DeveloperUpdateModel;
+﻿@model GenreAddModel;
 
-<form asp-action="UpdateDeveloperPost" asp-controller="Developer" method="post" enctype="multipart/form-data">
-    <input hidden asp-for="Id" />
+<form asp-action="CreateGenrePost" asp-controller="Genre" method="post" enctype="multipart/form-data">
  <div class="form-group">
         <label asp-for="Name"></label>
         <input asp-for="Name" class="form-control" />
@@ -14,13 +12,12 @@
         <span asp-validation-for="GameIds" class="text-danger"></span>
     </div>	
     <div class="form-group">
-        <input type="submit" value="Update" class="btn btn-primary" />
+        <input type="submit" value="Create" class="btn btn-primary" />
     </div>
 </form>
 @section Scripts{
     <script>
-    var select = "#gameSelect";
-    SelectGames(select);
+        var select = "#gameSelect"
+        SelectGames(select);
     </script>
 }
-

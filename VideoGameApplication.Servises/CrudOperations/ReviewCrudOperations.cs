@@ -100,7 +100,7 @@ namespace VideoGameApplication.Servises.CrudOperations
                 throw new Exception("Failed");
             }
         }
-        public string DeleteScreenshot(string id)
+        public string DeleteReview(string id)
         {
             try
             {

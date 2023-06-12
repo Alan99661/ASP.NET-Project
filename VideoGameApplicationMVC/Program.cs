@@ -19,6 +19,10 @@ builder.Services.AddDbContext<VideoGameDBContext>(options => options.UseSqlServe
 builder.Services.AddAutoMapper(typeof(MapConfiguration));
 builder.Services.AddScoped<IDeveloperCrudOperations, DeveloperCrudOperations>();
 builder.Services.AddScoped<IGameCrudOperations, GameCrudOperations>();
+builder.Services.AddScoped<IPlatformCrudOperations, PlatformCrudOperations>();
+builder.Services.AddScoped<IReviewCrudOperations, ReviewCrudOperations>();
+builder.Services.AddScoped<IScreenshotCrudOperations, ScreenshotCrudOperations>();
+builder.Services.AddScoped<IGenreCrudOperations, GenreCrudOperations>();
 builder.Services.AddScoped<IGetUpdateModels, GetUpdateModels>();
 builder.Services.AddScoped<IGetSelectModels, GetSelectModels>();
 

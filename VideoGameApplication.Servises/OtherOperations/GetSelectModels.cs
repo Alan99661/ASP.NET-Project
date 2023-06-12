@@ -31,7 +31,14 @@ namespace VideoGameApplication.Servises.OtherOperations
             var res = context.Games.Select(s => s).ToList();
             return mapper.Map<List<SelectModel>>(res);
         }
-        public List<SelectModel> GetPlatformSelectModels()
+
+		public List<SelectModel> GetGenreSelectModels()
+		{
+			var res = context.Genres.Select(s => s).ToList();
+			return mapper.Map<List<SelectModel>>(res);
+		}
+
+		public List<SelectModel> GetPlatformSelectModels()
         {
             var res = context.Games.Select(s => s).ToList();
             return mapper.Map<List<SelectModel>>(res);

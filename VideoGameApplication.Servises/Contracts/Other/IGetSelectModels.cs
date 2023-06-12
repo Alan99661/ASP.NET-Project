@@ -7,5 +7,6 @@ namespace VideoGameApplication.Servises.Contracts.Other
         List<SelectModel> GetDeveloperSelectModels();
         List<SelectModel> GetGamesSelectModels();
         List<SelectModel> GetPlatformSelectModels();
+        List<SelectModel> GetGenreSelectModels();
     }
 }

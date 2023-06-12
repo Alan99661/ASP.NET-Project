@@ -1,7 +1,7 @@
 ﻿
-@model DeveloperUpdateModel;
+@model PlatformUpdateModel;
 
-<form asp-action="UpdateDeveloperPost" asp-controller="Developer" method="post" enctype="multipart/form-data">
+<form asp-action="UpdatePlatformPost" asp-controller="Platform" method="post" enctype="multipart/form-data">
     <input hidden asp-for="Id" />
  <div class="form-group">
         <label asp-for="Name"></label>
@@ -23,4 +23,3 @@
     SelectGames(select);
     </script>
 }
-
