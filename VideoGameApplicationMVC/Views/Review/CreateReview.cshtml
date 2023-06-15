@@ -1,0 +1,16 @@
+﻿@model ReviewAddModel
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<User> UserManager
+
+<form asp-action="CreateReviewPost" asp-controller="Review" method="post" enctype="multipart/form-data">
+    <input hidden asp-for="GameId" value="@ViewData["gameId"]"/>
+    <input hidden asp-for="UserId" value="@UserManager.GetUserId(User)"/>
+    <div class="form-group">
+        <label asp-for="Content">Review</label>
+        <input asp-for="Content" class="form-control" />
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>	
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>

@@ -29,15 +29,16 @@ namespace VideoGameApplicationMVC.Controllers
 			var res = _operations.GetById(id);
 			return View(res);
 		}
-		public IActionResult CreateReview()
+		public IActionResult CreateReview(string id)
 		{
+			ViewData["gameId"] = id;
 			return View();
 		}
 		public IActionResult CreateReviewPost(ReviewAddModel model)
 		{
 			if (!ModelState.IsValid)
 			{
-				return View(model);
+				return View(model.GameId, model);
 			}
 			var res = _operations.CreateReview(model);
 			return Redirect("/Review/GetById/" + res.Id);
@@ -51,7 +52,7 @@ namespace VideoGameApplicationMVC.Controllers
 		{
 			if (!ModelState.IsValid)
 			{
-				return View(model);
+				return View(model.GameId,model);
 			}
 			var res = _operations.UpdateReview(model);
 			return Redirect("/Review/GetById/" + res.Id);

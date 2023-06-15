@@ -33,6 +33,8 @@ namespace VideoGameApplication.Database.Configuring
             modelBuilder.Entity<Review>(e =>
             {
                 e.HasKey(e => e.Id);
+                e.Property(e =>e.Certified)
+                .HasDefaultValue(false);
             });
             modelBuilder.Entity<Screenshot>(e =>
             {
