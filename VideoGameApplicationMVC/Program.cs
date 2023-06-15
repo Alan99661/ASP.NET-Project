@@ -54,7 +54,7 @@ using (var scope = app.Services.CreateScope())
 	await roleManager.CreateAsync(new IdentityRole() { Name = "Admin" });
 	await roleManager.CreateAsync(new IdentityRole() { Name = "User" });
 	var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
-	var user = new User() { UserName = "chadmin@gmail.com", Email = "chadmin@gmail.com" };
+	var user = new User() { UserName = "chadmin@gmail.com", Email = "chadmin@gmail.com"};
 	var hashedPassword = userManager.PasswordHasher.HashPassword(user, "Password123+");
 	user.PasswordHash = hashedPassword;
 	await userManager.CreateAsync(user);
