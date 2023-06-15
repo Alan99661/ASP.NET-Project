@@ -7,6 +7,8 @@ using VideoGameApplication.Servises.Contracts.UpdateModelGet;
 using VideoGameApplication.Servises.CrudOperations;
 using VideoGameApplication.Servises.MapConfig;
 using VideoGameApplication.Servises.OtherOperations;
+using Microsoft.AspNetCore.Identity;
+using VideoGameApplication.Models.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +18,11 @@ builder.Services.AddControllersWithViews();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
     throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<VideoGameDBContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = false).AddEntityFrameworkStores<VideoGameDBContext>()
+    .AddDefaultTokenProviders();
+builder.Services.AddScoped<UserManager<User>>();
+
 builder.Services.AddAutoMapper(typeof(MapConfiguration));
 builder.Services.AddScoped<IDeveloperCrudOperations, DeveloperCrudOperations>();
 builder.Services.AddScoped<IGameCrudOperations, GameCrudOperations>();
@@ -25,6 +32,8 @@ builder.Services.AddScoped<IScreenshotCrudOperations, ScreenshotCrudOperations>(
 builder.Services.AddScoped<IGenreCrudOperations, GenreCrudOperations>();
 builder.Services.AddScoped<IGetUpdateModels, GetUpdateModels>();
 builder.Services.AddScoped<IGetSelectModels, GetSelectModels>();
+
+builder.Services.AddRazorPages();
 
 
 var app = builder.Build();
@@ -47,5 +56,6 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapRazorPages();
 
 app.Run();
