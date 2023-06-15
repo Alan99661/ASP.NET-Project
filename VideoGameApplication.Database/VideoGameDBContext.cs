@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using VideoGameApplication.Database.Configuring;
 using VideoGameApplication.Models.Entities;
 
 namespace VideoGameApplication.Database
 {
-    public class VideoGameDBContext : IdentityDbContext<User>
+    public class VideoGameDBContext : IdentityDbContext<User, IdentityRole, string>
     {
         public VideoGameDBContext(DbContextOptions<VideoGameDBContext> dbContextOptionsBuilder) : base(dbContextOptionsBuilder)
         {
