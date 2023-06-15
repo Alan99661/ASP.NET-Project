@@ -71,32 +71,52 @@ namespace VideoGameApplication.Servises.CrudOperations
             try
             {
                 var game = mapper.Map<Game>(addModel);
-                var devs = context.Developers
-                    .Where(s => addModel.DeveloperIds
-                    .Contains(s.Id))
-                    .ToList();
-                var platforms = context.Platforms
+
+                if (addModel.DeveloperIds != null)
+                {
+
+                    var devs = context.Developers
+                        .Where(s => addModel.DeveloperIds
+                        .Contains(s.Id))
+                        .ToList();
+                    game.Developers = devs;
+                }
+                if (addModel.PlatformIds != null)
+                {
+
+                    var platforms = context.Platforms
                     .Where(s => addModel.PlatformIds
                     .Contains(s.Id))
                     .ToList();
-                var reviews = context.Reviews
+                    game.Platforms = platforms;
+                }
+                if (addModel.ReviewIds != null)
+                {
+
+                    var reviews = context.Reviews
                     .Where(s => addModel.ReviewIds
                     .Contains(s.Id))
                     .ToList();
-                var genres = context.Genres
-                    .Where(s => addModel.GenreIds
-                    .Contains(s.Id))
-                    .ToList();
-                var screenshots = context.Screenshots
-                    .Where(s => addModel.ScreenshotIds
-                    .Contains(s.Id))
-                    .ToList();
+                    game.Reviews = reviews;
+                }
+                if (addModel.GenreIds != null)
+                {
 
-                game.Screenshots = screenshots;
-                game.Genres = genres;
-                game.Reviews = reviews;
-                game.Developers = devs;
-                game.Platforms = platforms;
+                    var genres = context.Genres
+                        .Where(s => addModel.GenreIds
+                        .Contains(s.Id))
+                        .ToList();
+                    game.Genres = genres;
+                }
+                if (addModel.ScreenshotIds != null)
+                {
+                    var screenshots = context.Screenshots
+                        .Where(s => addModel.ScreenshotIds
+                        .Contains(s.Id))
+                        .ToList();
+                    game.Screenshots = screenshots;
+                }
+
                 context.Games.Add(game);
                 context.SaveChanges();
 
@@ -115,32 +135,47 @@ namespace VideoGameApplication.Servises.CrudOperations
 
                 var game = context.Games
                     .FirstOrDefault(s => s.Id == updateModel.Id);
-                var devs = context.Developers
-                    .Where(s => updateModel.DeveloperIds
-                    .Contains(s.Id))
-                    .ToList();
-                var platforms = context.Platforms
-                    .Where(s => updateModel.PlatformIds
-                    .Contains(s.Id))
-                    .ToList();
-                var reviews = context.Reviews
-                    .Where(s => updateModel.ReviewIds
-                    .Contains(s.Id))
-                    .ToList();
-                var genres = context.Genres
-                    .Where(s => updateModel.GenreIds
-                    .Contains(s.Id))
-                    .ToList();
-                var screenshots = context.Screenshots
-                    .Where(s => updateModel.ScreenshotIds
-                    .Contains(s.Id))
-                    .ToList();
+                if (updateModel.DeveloperIds != null)
+                {
+                    var devs = context.Developers
+                        .Where(s => updateModel.DeveloperIds
+                        .Contains(s.Id))
+                        .ToList();
+                    game.Developers = devs;
+                }
+                if (updateModel.PlatformIds != null)
+                {
+                    var platforms = context.Platforms
+                        .Where(s => updateModel.PlatformIds
+                        .Contains(s.Id))
+                        .ToList();
+                    game.Platforms = platforms;
+                }
+                if (updateModel.ReviewIds != null)
+                {
+                    var reviews = context.Reviews
+                        .Where(s => updateModel.ReviewIds
+                        .Contains(s.Id))
+                        .ToList();
+                    game.Reviews = reviews;
+                }
+                if (updateModel.GenreIds != null)
+                {
+                    var genres = context.Genres
+                        .Where(s => updateModel.GenreIds
+                        .Contains(s.Id))
+                        .ToList();
+                    game.Genres = genres;
+                }
+                if (updateModel.ScreenshotIds != null)
+                {
+                    var screenshots = context.Screenshots
+                        .Where(s => updateModel.ScreenshotIds
+                        .Contains(s.Id))
+                        .ToList();
+                    game.Screenshots = screenshots;
+                }
 
-                game.Screenshots = screenshots;
-                game.Genres = genres;
-                game.Reviews = reviews;
-                game.Developers = devs;
-                game.Platforms = platforms;
                 game.Name = updateModel.Name;
                 game.MetacriticRating = updateModel.MetacriticRating;
                 game.BackgroundImageUrl = updateModel.BackgroundImageUrl;

@@ -40,7 +40,7 @@ namespace VideoGameApplication.Servises.OtherOperations
 
 		public List<SelectModel> GetPlatformSelectModels()
         {
-            var res = context.Games.Select(s => s).ToList();
+            var res = context.Platforms.Select(s => s).ToList();
             return mapper.Map<List<SelectModel>>(res);
         }
     }

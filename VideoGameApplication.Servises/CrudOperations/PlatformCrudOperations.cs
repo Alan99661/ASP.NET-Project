@@ -63,10 +63,14 @@ namespace VideoGameApplication.Servises.CrudOperations
             {
 
                 var Platform = mapper.Map<Platform>(addModel);
-                var games = context.Games
+                if (addModel.GameIds != null)
+                {
+
+                    var games = context.Games
                     .Where(e => addModel.GameIds.Contains(e.Id))
                     .ToList();
-                Platform.Games = games;
+                    Platform.Games = games;
+                }
                 context.Platforms.Add(Platform);
                 context.SaveChanges();
 
@@ -82,10 +86,14 @@ namespace VideoGameApplication.Servises.CrudOperations
             try
             {
                 var Platform = context.Platforms.FirstOrDefault(s => s.Id == updateModel.Id);
-                var games = context.Games
+                if (updateModel.GameIds != null)
+                {
+
+                    var games = context.Games
                    .Where(e => updateModel.GameIds.Contains(e.Id))
                    .ToList();
-                Platform.Games = games;
+                    Platform.Games = games;
+                }
                 Platform.Name = updateModel.Name;
                 context.Update(Platform);
                 context.SaveChanges();

@@ -1,8 +1,8 @@
-﻿function SelectGames(appendId) {
+﻿function SelectAppend(controllerRoute,appendId) {
     $(document).ready(function () {
         $.ajax({
             method: "get",
-            url: "/Game/GetGameSelectModel",
+            url: controllerRoute,
             success: function (data) {
                 console.log(data);
                 $.each(data, function (i, item) {
@@ -14,3 +14,5 @@
         });
     });
 };
+
+

@@ -1,0 +1,7 @@
+﻿@model GameViewModel;
+
+<p>@Model.Name</p>
+@foreach(var platform in Model.Platforms)
+{
+	<p>@platform.Name</p>
+}

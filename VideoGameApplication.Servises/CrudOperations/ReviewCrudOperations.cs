@@ -67,10 +67,17 @@ namespace VideoGameApplication.Servises.CrudOperations
             {
 
                 var review = mapper.Map<Review>(addModel);
-                var game = context.Games.FirstOrDefault(s => s.Id == addModel.GameId);
-                var user = context.Users.FirstOrDefault(s => s.Id == addModel.UserId);
-                review.Game = game;
-                review.User = user;
+                if (addModel.UserId != null)
+                {
+                    var user = context.Users.FirstOrDefault(s => s.Id == addModel.UserId);
+                    review.User = user;
+                }
+                if (addModel.GameId != null)
+                {
+
+                    var game = context.Games.FirstOrDefault(s => s.Id == addModel.GameId);
+                    review.Game = game;
+                }
                 context.Reviews.Add(review);
                 context.SaveChanges();
 
@@ -86,10 +93,16 @@ namespace VideoGameApplication.Servises.CrudOperations
             try
             {
                 var review = context.Reviews.FirstOrDefault(s => s.Id == updateModel.Id);
-                var game = context.Games.FirstOrDefault(s => s.Id == updateModel.GameId);
-                var user = context.Users.FirstOrDefault(s => s.Id == updateModel.UserId);
-                review.User = user;
-                review.Game = game;
+                if (updateModel.GameId != null)
+                {
+                    var game = context.Games.FirstOrDefault(s => s.Id == updateModel.GameId);
+                    review.Game = game;
+                }
+                if (updateModel.UserId != null)
+                {
+                    var user = context.Users.FirstOrDefault(s => s.Id == updateModel.UserId);
+                    review.User = user;
+                }
                 context.Update(review);
                 context.SaveChanges();
 

@@ -63,10 +63,14 @@ namespace VideoGameApplication.Servises.CrudOperations
             {
 
                 var genre = mapper.Map<Genre>(addModel);
-                var games = context.Games
+                if (addModel.GameIds != null)
+                {
+
+                    var games = context.Games
                     .Where(e => addModel.GameIds.Contains(e.Id))
                     .ToList();
-                genre.Games = games;
+                    genre.Games = games;
+                }
                 context.Genres.Add(genre);
                 context.SaveChanges();
 
@@ -82,10 +86,14 @@ namespace VideoGameApplication.Servises.CrudOperations
             try
             {
                 var genre = context.Genres.FirstOrDefault(s => s.Id == updateModel.Id);
-                var games = context.Games
+                if (updateModel.GameIds != null)
+                {
+
+                    var games = context.Games
                    .Where(e => updateModel.GameIds.Contains(e.Id))
                    .ToList();
-                genre.Games = games;
+                    genre.Games = games;
+                }
                 genre.Name = updateModel.Name;
                 context.Update(genre);
                 context.SaveChanges();

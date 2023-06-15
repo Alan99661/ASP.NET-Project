@@ -64,8 +64,12 @@ namespace VideoGameApplication.Servises.CrudOperations
             {
 
                 var screenshot = mapper.Map<Screenshot>(addModel);
-                var game = context.Games.FirstOrDefault(s => s.Id == addModel.GameId);
-                screenshot.Game = game;
+                if (addModel.GameId != null)
+                {
+
+                    var game = context.Games.FirstOrDefault(s => s.Id == addModel.GameId);
+                    screenshot.Game = game;
+                }
                 context.Screenshots.Add(screenshot);
                 context.SaveChanges();
 
@@ -81,9 +85,12 @@ namespace VideoGameApplication.Servises.CrudOperations
             try
             {
                 var screenshot = context.Screenshots.FirstOrDefault(s => s.Id == updateModel.Id);
-                var game = context.Games.FirstOrDefault(s => s.Id == updateModel.GameId);
+                if (updateModel.GameId != null)
+                {
+                    var game = context.Games.FirstOrDefault(s => s.Id == updateModel.GameId);
+                    screenshot.Game = game;
+                }
                 screenshot.Url = updateModel.Url;
-                screenshot.Game = game;
                 context.Update(screenshot);
                 context.SaveChanges();
 

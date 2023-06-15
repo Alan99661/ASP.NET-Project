@@ -1,0 +1,72 @@
+﻿@model GameAddModel
+
+<form asp-action="CreateGamePost" asp-controller="Game" method="post" enctype="multipart/form-data">
+ <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ReleaseDate"></label>
+        <input asp-for="ReleaseDate" class="form-control" asp-format="{0:yyyy-MM-dd}" type="date"/>
+        <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <input asp-for="Description" class="form-control"/>
+        <span asp-validation-for="Description"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="BackgroundImageUrl"></label>
+        <input asp-for="BackgroundImageUrl" class="form-control" type="url"/>
+        <span asp-validation-for="BackgroundImageUrl"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="MetacriticRating"></label>
+        <input asp-for="MetacriticRating" class="form-control"/>
+        <span asp-validation-for="MetacriticRating"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="GameWebsite"></label>
+        <input asp-for="GameWebsite" class="form-control" type="url"/>
+        <span asp-validation-for="GameWebsite"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DeveloperIds">Select Developers</label>
+        <select asp-for="DeveloperIds" id="devSelect"> </select>
+        <span asp-validation-for="DeveloperIds"></span>
+    </div>	
+    <div class="form-group">
+        <label asp-for="GenreIds">Select Genres</label>
+        <select asp-for="GenreIds" id="genreSelect"></select>
+        <span asp-validation-for="GenreIds"></span>
+    </div>	
+    <div class="form-group">
+        <label asp-for="PlatformIds">Select Platforms</label>
+        <select asp-for="PlatformIds" id="platformSelect"></select>
+        <span asp-validation-for="PlatformIds"></span>
+    </div>	
+ @*   <div class="form-group">
+        <label asp-for="ScreenshotIds"></label>
+        <select asp-for="ScreenshotIds" id="screenshotSelect"/>
+        <span asp-validation-for="ScreenshotIds"></span>
+    </div>*@
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+@section Scripts{
+    <script>
+        var route = "/Developer/GetDeveloperSelectModel"
+        var select = "#devSelect"
+        SelectAppend(route,select);
+
+        var route = "/Platform/GetPlatformSelectModel"
+        var select = "#platformSelect"
+        SelectAppend(route,select);
+
+        var route = "/Genre/GetGenreSelectModel"
+        var select = "#genreSelect"
+        SelectAppend(route,select);
+    </script>
+}

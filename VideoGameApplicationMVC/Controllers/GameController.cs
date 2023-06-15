@@ -22,7 +22,8 @@ namespace VideoGameApplicationMVC.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var res = _operations.GetAll();
+            return View(res);
         }
         public IActionResult GetById(string id)
         {
