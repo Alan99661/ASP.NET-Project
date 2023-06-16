@@ -12,12 +12,14 @@ namespace VideoGameApplicationMVC.Controllers
         private readonly IGameCrudOperations _operations;
         private readonly IGetUpdateModels _getUpdateModels;
         private readonly IGetSelectModels _getSelectModel;
+        private readonly IGetGameStats _gameStats;
 
-        public GameController(IGameCrudOperations operations, IGetUpdateModels getUpdateModels, IGetSelectModels getSelectModel)
+        public GameController(IGameCrudOperations operations, IGetUpdateModels getUpdateModels, IGetSelectModels getSelectModel, IGetGameStats gameStats)
         {
             this._operations = operations;
             _getUpdateModels = getUpdateModels;
             _getSelectModel = getSelectModel;
+            _gameStats = gameStats;
         }
 
         public IActionResult Index()
@@ -67,6 +69,11 @@ namespace VideoGameApplicationMVC.Controllers
         {
             var models = _getSelectModel.GetGamesSelectModels();
             return Json(models);
+        }
+        public IActionResult CheckTopGenres(string id)
+        {
+            var res = _gameStats.GetTopGenres(id);
+            return Json(res);
         }
     }
 }

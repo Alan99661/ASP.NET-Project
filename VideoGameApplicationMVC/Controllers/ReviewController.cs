@@ -10,13 +10,13 @@ namespace VideoGameApplicationMVC.Controllers
 	{
 		private readonly IReviewCrudOperations _operations;
 		private readonly IGetUpdateModels _getUpdateModel;
-		private readonly IGetSelectModels _getSelectModel;
+		private readonly ISmallMicroservises _smallMicro;
 
-		public ReviewController(IReviewCrudOperations operations, IGetUpdateModels getUpdateModel, IGetSelectModels getSelectModels)
+		public ReviewController(IReviewCrudOperations operations, IGetUpdateModels getUpdateModel, ISmallMicroservises SmallMicro)
 		{
 			_operations = operations;
 			_getUpdateModel = getUpdateModel;
-			_getSelectModel = getSelectModels;
+			_smallMicro = SmallMicro;
 		}
 
 		public IActionResult Index()
@@ -63,10 +63,10 @@ namespace VideoGameApplicationMVC.Controllers
 			var res = _operations.DeleteReview(id);
 			return RedirectToAction("Index");
 		}
-		//public IActionResult GetReviewSelectModel()
-		//{
-		//	var models = _getSelectModel.GetReviewSelectModels();
-		//	return Json(models);
-		//}
+		public IActionResult CertifyReview(string id)
+		{
+			var res = _smallMicro.CertifyReview(id);
+			return RedirectToAction("Index");
+		}
 	}
 }

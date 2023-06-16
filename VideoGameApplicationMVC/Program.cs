@@ -10,6 +10,7 @@ using VideoGameApplication.Servises.OtherOperations;
 using Microsoft.AspNetCore.Identity;
 using VideoGameApplication.Models.Entities;
 using VideoGameApplication.Database.Configuring;
+using VideoGameApplication.Servises.MicroServises;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +35,8 @@ builder.Services.AddScoped<IScreenshotCrudOperations, ScreenshotCrudOperations>(
 builder.Services.AddScoped<IGenreCrudOperations, GenreCrudOperations>();
 builder.Services.AddScoped<IGetUpdateModels, GetUpdateModels>();
 builder.Services.AddScoped<IGetSelectModels, GetSelectModels>();
+builder.Services.AddScoped<IGetGameStats,GetGameStats>();
+builder.Services.AddScoped<ISmallMicroservises, SmallMicroservises>();
 
 builder.Services.AddRazorPages();
 
