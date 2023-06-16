@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using VideoGameApplication.Servises.Contracts.CrudOperations;
 using VideoGameApplication.Servises.Contracts.Other;
 using VideoGameApplication.Servises.Contracts.UpdateModelGet;
@@ -29,10 +31,12 @@ namespace VideoGameApplicationMVC.Controllers
 			var res = _operations.GetById(id);
 			return View(res);
 		}
+		[Authorize(Roles = "Admin")]
 		public IActionResult CreateScreenshot()
 		{
 			return View();
 		}
+		[Authorize(Roles = "Admin")]
 		public IActionResult CreateScreenshotPost(ScreenshotAddModel model)
 		{
 			if (!ModelState.IsValid)
@@ -42,11 +46,13 @@ namespace VideoGameApplicationMVC.Controllers
 			var res = _operations.CreateScreenshot(model);
 			return Redirect("/Screenshot/GetById/" + res.Id);
 		}
+		[Authorize(Roles = "Admin")]
 		public IActionResult UpdateScreenshot(string id)
 		{
 			var model = _getUpdateModel.GetScreenshotUpdateModel(id);
 			return View(model);
 		}
+		[Authorize(Roles = "Admin")]
 		public IActionResult UpdateScreenshotPost(ScreenshotUpdateModel model)
 		{
 			if (!ModelState.IsValid)
@@ -56,7 +62,7 @@ namespace VideoGameApplicationMVC.Controllers
 			var res = _operations.UpdateScreenshot(model);
 			return Redirect("/Screenshot/GetById/" + res.Id);
 		}
-
+		[Authorize(Roles = "Admin")]
 		public IActionResult DeleteScreenshotPost(string id)
 		{
 			var res = _operations.DeleteScreenshot(id);

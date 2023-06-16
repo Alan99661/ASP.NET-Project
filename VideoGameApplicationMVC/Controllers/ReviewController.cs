@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using VideoGameApplication.Servises.Contracts.CrudOperations;
 using VideoGameApplication.Servises.Contracts.Other;
 using VideoGameApplication.Servises.Contracts.UpdateModelGet;
@@ -29,6 +31,7 @@ namespace VideoGameApplicationMVC.Controllers
 			var res = _operations.GetById(id);
 			return View(res);
 		}
+
 		public IActionResult CreateReview(string id)
 		{
 			ViewData["gameId"] = id;
@@ -57,12 +60,12 @@ namespace VideoGameApplicationMVC.Controllers
 			var res = _operations.UpdateReview(model);
 			return Redirect("/Review/GetById/" + res.Id);
 		}
-
 		public IActionResult DeleteReviewPost(string id)
 		{
 			var res = _operations.DeleteReview(id);
 			return RedirectToAction("Index");
 		}
+		[Authorize(Roles = "Admin")]
 		public IActionResult CertifyReview(string id)
 		{
 			var res = _smallMicro.CertifyReview(id);

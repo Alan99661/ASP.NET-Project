@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using VideoGameApplication.Servises.Contracts.CrudOperations;
 using VideoGameApplication.Servises.Contracts.Other;
 using VideoGameApplication.Servises.Contracts.UpdateModelGet;
@@ -29,10 +31,12 @@ namespace VideoGameApplicationMVC.Controllers
 			var res = _operations.GetById(id);
 			return View(res);
 		}
+		[Authorize(Roles = "Admin")]
 		public IActionResult CreateGenre()
 		{
 			return View();
 		}
+		[Authorize(Roles = "Admin")]
 		public IActionResult CreateGenrePost(GenreAddModel model)
 		{
 			if (!ModelState.IsValid)
@@ -42,11 +46,13 @@ namespace VideoGameApplicationMVC.Controllers
 			var res = _operations.CreateGenre(model);
 			return Redirect("/Genre/GetById/" + res.Id);
 		}
+		[Authorize(Roles = "Admin")]
 		public IActionResult UpdateGenre(string id)
 		{
 			var model = _getUpdateModel.GetGenreUpdateModel(id);
 			return View(model);
 		}
+		[Authorize(Roles = "Admin")]
 		public IActionResult UpdateGenrePost(GenreUpdateModel model)
 		{
 			if (!ModelState.IsValid)
@@ -56,7 +62,7 @@ namespace VideoGameApplicationMVC.Controllers
 			var res = _operations.UpdeteGenre(model);
 			return Redirect("/Genre/GetById/" + res.Id);
 		}
-
+		[Authorize(Roles = "Admin")]
 		public IActionResult DeleteGenrePost(string id)
 		{
 			var res = _operations.DeleteGenre(id);

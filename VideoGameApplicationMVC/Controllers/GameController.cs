@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using VideoGameApplication.Servises.Contracts.CrudOperations;
 using VideoGameApplication.Servises.Contracts.Other;
 using VideoGameApplication.Servises.Contracts.UpdateModelGet;
@@ -32,11 +34,13 @@ namespace VideoGameApplicationMVC.Controllers
             var res = _operations.GetById(id);
             return View(res);
         }
-        public IActionResult CreateGame()
+		[Authorize(Roles = "Admin")]
+		public IActionResult CreateGame()
         {
             return View();
         }
-        public IActionResult CreateGamePost(GameAddModel model)
+		[Authorize(Roles = "Admin")]
+		public IActionResult CreateGamePost(GameAddModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -45,12 +49,14 @@ namespace VideoGameApplicationMVC.Controllers
             var res = _operations.CreateGame(model);
             return Redirect("/Game/GetById/" + res.Id);
         }
-        public IActionResult UpdateGame(string id)
+		[Authorize(Roles = "Admin")]
+		public IActionResult UpdateGame(string id)
         {
             var model = _getUpdateModels.GetGameUpdateModel(id);
             return View(model);
         }
-        public IActionResult UpdateGamePost(GameUpdateModel model)
+		[Authorize(Roles = "Admin")]
+		public IActionResult UpdateGamePost(GameUpdateModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -59,8 +65,8 @@ namespace VideoGameApplicationMVC.Controllers
             var res = _operations.UpdateGame(model);
             return Redirect("/Game/GetById/" + res.Id);
         }
-
-        public IActionResult DeleteGamePost(string id)
+		[Authorize(Roles = "Admin")]
+		public IActionResult DeleteGamePost(string id)
         {
             var res = _operations.DeleteGame(id);
             return RedirectToAction("Index");

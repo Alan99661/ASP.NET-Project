@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using VideoGameApplication.Servises.Contracts.CrudOperations;
 using VideoGameApplication.Servises.Contracts.Other;
 using VideoGameApplication.Servises.Contracts.UpdateModelGet;
@@ -30,11 +32,13 @@ namespace VideoGameApplicationMVC.Controllers
             var res = _operations.GetById(id);
             return View(res);
         }
-        public IActionResult CreatePlatform()
+		[Authorize(Roles = "Admin")]
+		public IActionResult CreatePlatform()
         {
             return View();
         }
-        public IActionResult CreatePlatformPost(PlatformAddModel model)
+		[Authorize(Roles = "Admin")]
+		public IActionResult CreatePlatformPost(PlatformAddModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -43,12 +47,14 @@ namespace VideoGameApplicationMVC.Controllers
             var res = _operations.CreatePlatform(model);
             return Redirect("/Platform/GetById/" + res.Id);
         }
-        public IActionResult UpdatePlatform(string id)
+		[Authorize(Roles = "Admin")]
+		public IActionResult UpdatePlatform(string id)
         {
             var model = _getUpdateModel.GetPlatformUpdateModel(id);
             return View(model);
         }
-        public IActionResult UpdatePlatformPost(PlatformUpdateModel model)
+		[Authorize(Roles = "Admin")]
+		public IActionResult UpdatePlatformPost(PlatformUpdateModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -57,8 +63,8 @@ namespace VideoGameApplicationMVC.Controllers
             var res = _operations.UpdetePlatform(model);
             return Redirect("/Platform/GetById/" + res.Id);
         }
-
-        public IActionResult DeletePlatformPost(string id)
+		[Authorize(Roles = "Admin")]
+		public IActionResult DeletePlatformPost(string id)
         {
             var res = _operations.DeletePlatform(id);
             return RedirectToAction("Index");

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using System.Threading.Tasks;
 using VideoGameApplication.Servises.Contracts.CrudOperations;
 using VideoGameApplication.Servises.Contracts.Other;
@@ -31,11 +33,13 @@ namespace VideoGameApplicationMVC.Controllers
             var res = _operations.GetById(id);
             return View(res);
         }
-        public IActionResult CreateDeveloper() 
+		[Authorize(Roles = "Admin")]
+		public IActionResult CreateDeveloper() 
         {
             return View();
         }
-        public IActionResult CreateDeveloperPost(DeveloperAddModel model)
+		[Authorize(Roles = "Admin")]
+		public IActionResult CreateDeveloperPost(DeveloperAddModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -44,12 +48,14 @@ namespace VideoGameApplicationMVC.Controllers
             var res = _operations.CreateDeveloper(model);
             return Redirect("/Developer/GetById/" + res.Id);
         }
-        public IActionResult UpdateDeveloper(string id)
+		[Authorize(Roles = "Admin")]
+		public IActionResult UpdateDeveloper(string id)
         {
             var model = _getDevUpdateModel.GetDevUpdateModel(id);
             return View(model);
         }
-        public IActionResult UpdateDeveloperPost(DeveloperUpdateModel model)
+		[Authorize(Roles = "Admin")]
+		public IActionResult UpdateDeveloperPost(DeveloperUpdateModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -58,8 +64,8 @@ namespace VideoGameApplicationMVC.Controllers
             var res = _operations.UpdeteDeveloper(model);
             return Redirect("/Developer/GetById/" + res.Id);
         }
-
-        public IActionResult DeleteDeveloperPost(string id)
+		[Authorize(Roles = "Admin")]
+		public IActionResult DeleteDeveloperPost(string id)
         {
             var res = _operations.DeleteDeveloper(id);
             return RedirectToAction("Index");
