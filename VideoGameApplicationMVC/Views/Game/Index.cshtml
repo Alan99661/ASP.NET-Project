@@ -1,5 +1,17 @@
 ﻿@model List<GameViewModel>;
-
-@foreach(var game in Model){
-	<p>@game.Name</p>
-}
+<div class="container">
+  <h1 class="text-center display-4 text-gray">All Games</h1>
+  <div class="d-flex flex-wrap flex-row justify-content-around">
+    @foreach (var game in Model)
+    {
+      <div class="card" style="width: 25rem; height: 20rem;">
+        <img class="card-img-top img-fluid" style="max-height: 60%;" src="@game.BackgroundImageUrl" alt="BackgroundImage">
+        <div class="card-body">
+          <h5 class="card-title">@game.Name</h5>
+          <p class="card-text">@game.Description</p>
+          <a asp-action="GetById" asp-controller="Game" asp-route-id="@game.Id" class="btn btn-primary">Info</a>
+        </div>
+      </div>
+    }
+  </div>
+</div>
