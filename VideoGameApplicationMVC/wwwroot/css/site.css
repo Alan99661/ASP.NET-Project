@@ -21,3 +21,20 @@ body {
   margin-bottom: 60px;
   background-color: aliceblue;
 }
+
+.stacked{
+    align-items:end;
+    justify-content: flex-start;
+    height: 100%;
+    aspect-ratio: 1/1;
+    display: grid;
+    isolation: isolate;
+}
+
+.stacked>*{
+    grid-area:1/1/-1/-1;
+}
+
+.stacked>media{
+    z-index : -1;
+}
