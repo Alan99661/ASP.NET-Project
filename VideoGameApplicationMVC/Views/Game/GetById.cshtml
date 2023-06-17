@@ -1,9 +1,9 @@
 ﻿@model GameViewModel;
 
 <div class="container-fluid bg-white border border-dark">
-  <div class="row-sm-2">
+  <div>
           <div class="stacked">
-            <img src="@Model.BackgroundImageUrl" class="media" style="max-width: 100%; display: block; margin-block-start: 1em; " />
+            <img src="@Model.BackgroundImageUrl" class="media"/>
             <p>@Model.Name</p>
             @if (User.IsInRole("Admin"))
             {
