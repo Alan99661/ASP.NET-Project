@@ -67,11 +67,9 @@ namespace VideoGameApplication.Servises.CrudOperations
             {
 
                 var review = mapper.Map<Review>(addModel);
-                if (addModel.UserId != null)
-                {
-                    var user = context.Users.FirstOrDefault(s => s.Id == addModel.UserId);
-                    review.User = user;
-                }
+                var user = context.Users.FirstOrDefault(s => s.Id == addModel.UserId);
+                review.UserName = user.UserName;
+                review.User = user;
                 if (addModel.GameId != null)
                 {
 
@@ -101,6 +99,7 @@ namespace VideoGameApplication.Servises.CrudOperations
                 if (updateModel.UserId != null)
                 {
                     var user = context.Users.FirstOrDefault(s => s.Id == updateModel.UserId);
+                    review.UserName = user.UserName;
                     review.User = user;
                 }
                 context.Update(review);

@@ -11,6 +11,7 @@ namespace VideoGameApplication.Models.Entities
     public class Review : BaseModel
     {
         public User User { get; set; }
+        public string UserName { get; set; }
         public Game Game { get; set; }
         public string Content { get; set; }
 		public bool Certified { get; set; }

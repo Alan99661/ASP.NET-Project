@@ -1,59 +1,89 @@
 ﻿@model GameViewModel;
 
-<div class="container-fluid">
+<div class="container-fluid bg-white border border-dark">
   <div class="row">
     <div class="col-sm-2 border-right">
       <p>@Model.Name</p>
+            @if (User.IsInRole("Admin"))
+            {
+                
+            <a asp-action="UpdateGame" asp-controller="Game" asp-route-id="@Model.Id" class="btn btn-primary">Update</a>
+            <a asp-action="DeleteGame" asp-controller="Game" asp-route-id="@Model.Id" class="btn btn-primary">Delete</a>
+            }
     </div>
     <div class="col">
       <div class="row">
         <div class="col-sm-4">
           <div class="image-container">
-            <img src="@Model.BackgroundImageUrl" class="img-fluid" />
+            <img src="@Model.BackgroundImageUrl" class="img-fluid" style="max-width: 100%; display: block;" />
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col d-flex flex-wrap">
-          <div class="card" style="width: 30rem; height: 7rem;">
-            <div class="card-header">
-              Platforms
+        <div class="col">
+          <div class="d-flex justify-content-around">
+            <div class="card" style="width: 29rem; height: 7rem;">
+              <div class="card-header">
+                Platforms
+              </div>
+              <ul class="list-group list-group-flush">
+                @foreach (var platform in Model.Platforms)
+                {
+                  <a asp-action="GetById" asp-controller="Platform" asp-route-id="@platform.Id" class="list-group-item list-group-item-action">@platform.Name</a>
+                }
+              </ul>
             </div>
-            <ul class="list-group list-group-flush">
-              @foreach (var platform in Model.Platforms)
-              {
-                <a asp-action="GetById" asp-controller="Platform" asp-route-id="@platform.Id" class="list-group-item list-group-item-action">@platform.Name</a>
-              }
-            </ul>
-          </div>
 
-          <div class="card" style="width: 30rem; height: 7rem;"> 
-            <div class="card-header">
-              Genres
+            <div class="card" style="width: 29rem; height: 7rem;">
+              <div class="card-header">
+                Genres
+              </div>
+              <ul class="list-group list-group-flush">
+                @foreach (var genre in Model.Genres)
+                {
+                  <a asp-action="GetById" asp-controller="Genre" asp-route-id="@genre.Id" class="list-group-item list-group-item-action">@genre.Name</a>
+                }
+              </ul>
             </div>
-            <ul class="list-group list-group-flush">
-              @foreach (var genre in Model.Genres)
-              {
-                <a asp-action="GetById" asp-controller="Genre" asp-route-id="@genre.Id" class="list-group-item list-group-item-action">@genre.Name</a>
-              }
-            </ul>
-          </div>
 
-          <div class="card" style="width: 30rem; height: 7rem;">
-            <div class="card-header">
-              Developers
+            <div class="card" style="width: 29rem; height: 7rem;">
+              <div class="card-header">
+                Developers
+              </div>
+              <ul class="list-group list-group-flush">
+                @foreach (var developer in Model.Developers)
+                {
+                  <a asp-action="GetById" asp-controller="Developer" asp-route-id="@developer.Id" class="list-group-item list-group-item-action">@developer.Name</a>
+                }
+              </ul>
             </div>
-            <ul class="list-group list-group-flush">
-              @foreach (var developer in Model.Developers)
-              {
-                <a asp-action="GetById" asp-controller="Developer" asp-route-id="@developer.Id" class="list-group-item list-group-item-action">@developer.Name</a>
-              }
-            </ul>
           </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col d-flex flex-column nowrap">
+          @foreach(var review in Model.Reviews)
+          {
+            @* @if(review.Certified){<div class="card text-white bg-warning mb-3">}*@
+            <div class="card">
+              <div class="card-header">
+                @review.UserName
+              </div>
+              <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                  <p>@review.Content</p>
+                </blockquote>
+              </div>
+            </div>
+          }
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+
 
 
