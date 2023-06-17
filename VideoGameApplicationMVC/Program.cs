@@ -19,7 +19,7 @@ builder.Services.AddControllersWithViews();
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
     throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<VideoGameDBContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<VideoGameDBContext>(options => options.UseLazyLoadingProxies().UseSqlServer(connectionString));
 
 builder.Services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<VideoGameDBContext>()

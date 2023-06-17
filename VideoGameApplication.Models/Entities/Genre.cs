@@ -11,6 +11,6 @@ namespace VideoGameApplication.Models.Entities
     public class Genre : BaseModel
     {
         public string Name { get; set; }
-        public List<Game>? Games { get; set; }
+        public virtual List<Game>? Games { get; set; }
     }
 }

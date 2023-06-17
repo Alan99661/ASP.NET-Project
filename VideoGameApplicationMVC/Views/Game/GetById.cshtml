@@ -1,19 +1,20 @@
 ﻿@model GameViewModel;
 
 <div class="container-fluid bg-white border border-dark">
-  <div>
-          <div class="stacked">
-            <img src="@Model.BackgroundImageUrl" class="media"/>
-            <p>@Model.Name</p>
-            @if (User.IsInRole("Admin"))
-            {
-                
-            <a asp-action="UpdateGame" asp-controller="Game" asp-route-id="@Model.Id" class="btn btn-primary">Update</a>
-            <a asp-action="DeleteGame" asp-controller="Game" asp-route-id="@Model.Id" class="btn btn-primary">Delete</a>
-            }
-          </div>
+  <div class="row">
+    <div class="stacked">
+      <img src="@Model.BackgroundImageUrl" class="media" style="width:100%; aspect-ratio:16/9;"/>
+      <p>@Model.Name</p>
+      @if (User.IsInRole("Admin"))
+      { 
+        <a asp-action="UpdateGame" asp-controller="Game" asp-route-id="@Model.Id" class="btn btn-primary">Update</a>
+        <a asp-action="DeleteGamePost" asp-controller="Game" asp-route-id="@Model.Id" class="btn btn-primary">Delete</a>
+      }
     </div>
-    <div class="row">
+  </div>
+
+  <div class="row">
+    <div class="col">
       <div class="row">
         <div class="col">
           <div class="d-flex justify-content-around">
@@ -76,8 +77,8 @@
       </div>
     </div>
   </div>
-  </div>
 </div>
+
 
 
 

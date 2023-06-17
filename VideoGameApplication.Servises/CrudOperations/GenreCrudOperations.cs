@@ -95,7 +95,7 @@ namespace VideoGameApplication.Servises.CrudOperations
                     genre.Games = games;
                 }
                 genre.Name = updateModel.Name;
-                context.Update(genre);
+                context.Genres.Update(genre);
                 context.SaveChanges();
 
                 return mapper.Map<GenreViewModel>(genre);

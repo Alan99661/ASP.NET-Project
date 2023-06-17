@@ -28,6 +28,7 @@ body {
     align-items: end;
     justify-items: center;
     isolation: isolate;
+    width: min(15em,70%);
 }
 
     .stacked > * {

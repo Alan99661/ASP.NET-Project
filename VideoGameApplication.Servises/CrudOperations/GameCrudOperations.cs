@@ -141,7 +141,8 @@ namespace VideoGameApplication.Servises.CrudOperations
                         .Where(s => updateModel.DeveloperIds
                         .Contains(s.Id))
                         .ToList();
-                    game.Developers = devs;
+                    if(!game.Developers.Equals(devs))
+                        game.Developers = devs;
                 }
                 if (updateModel.PlatformIds != null)
                 {
@@ -149,7 +150,8 @@ namespace VideoGameApplication.Servises.CrudOperations
                         .Where(s => updateModel.PlatformIds
                         .Contains(s.Id))
                         .ToList();
-                    game.Platforms = platforms;
+                    if (!game.Platforms.Equals(platforms))
+                        game.Platforms = platforms;
                 }
                 if (updateModel.ReviewIds != null)
                 {
@@ -157,7 +159,8 @@ namespace VideoGameApplication.Servises.CrudOperations
                         .Where(s => updateModel.ReviewIds
                         .Contains(s.Id))
                         .ToList();
-                    game.Reviews = reviews;
+                    if (!game.Reviews.Equals(reviews))
+                        game.Reviews = reviews;
                 }
                 if (updateModel.GenreIds != null)
                 {
@@ -165,7 +168,8 @@ namespace VideoGameApplication.Servises.CrudOperations
                         .Where(s => updateModel.GenreIds
                         .Contains(s.Id))
                         .ToList();
-                    game.Genres = genres;
+                    if(!game.Genres.Equals(genres))
+                        game.Genres = genres;
                 }
                 if (updateModel.ScreenshotIds != null)
                 {
@@ -173,7 +177,8 @@ namespace VideoGameApplication.Servises.CrudOperations
                         .Where(s => updateModel.ScreenshotIds
                         .Contains(s.Id))
                         .ToList();
-                    game.Screenshots = screenshots;
+                    if(!game.Screenshots.Equals(screenshots))
+                        game.Screenshots = screenshots;
                 }
 
                 game.Name = updateModel.Name;
