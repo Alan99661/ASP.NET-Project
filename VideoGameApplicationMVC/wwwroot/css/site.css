@@ -75,3 +75,9 @@ body {
         .stacked a[data-function="update"] {
             padding-inline: 0.45em;
         }
+
+        .truncate {
+            white-space: nowrap;
+            overflow: scroll ;
+            text-overflow: ellipsis;
+        }

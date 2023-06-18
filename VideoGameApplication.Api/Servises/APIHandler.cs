@@ -7,22 +7,24 @@ using VideoGameApplication.Api.Models;
 using VideoGameApplication.Database;
 using VideoGameApplication.Models.Entities;
 
-namespace VideoGameApplication.Api
+namespace VideoGameApplication.Api.Servises
 {
     public class APIHandler : IAPIHandler
     {
         private readonly HttpClient _httpClient;
         private readonly VideoGameDBContext _dbContext;
+        private readonly IAPIListChecker _listChecker;
 
-        public APIHandler(HttpClient httpClient, VideoGameDBContext dbContext)
+        public APIHandler(HttpClient httpClient, VideoGameDBContext dbContext, IAPIListChecker listChecker)
         {
             _httpClient = httpClient;
             _dbContext = dbContext;
+            _listChecker = listChecker;
         }
 
         public async Task<APIGameIdResult> GetGameIds(string key, int count)
         {
-            var endpoint = $"https://api.rawg.io/api/games?ordering=relevance&page_size={count}&key={key}";
+            var endpoint = $"https://api.rawg.io/api/games?page_size={count}&key={key}";
             var httpResponseMessage = await _httpClient.GetAsync(endpoint);
             if (httpResponseMessage.IsSuccessStatusCode)
             {
@@ -60,26 +62,12 @@ namespace VideoGameApplication.Api
                         BackgroundImageUrl = apiGame.background_image,
                         MetacriticRating = apiGame.Metacritic,
                         GameWebsite = apiGame.Website,
-                        Developers = apiGame.Developers.Select(s => new Developer()
-                        {
-                            
-                            Name = s.Name
-                        }).ToList(),
-                        Genres = apiGame.Genres.Select(s => new Genre()
-                        {
-                            Name = s.Name,
-                        }).ToList(),
-                        Platforms = apiGame.parent_platforms.Select(s => new Platform()
-                        {
-                            Name = s.Platform.Name,
-                        }).ToList(),
-                        Screenshots = IdNamePair.Short_screenshots.Select(s => new Screenshot()
-                        {
-                            Url = s.Image,
-                        }).ToList()
+                        Developers = _listChecker.GetDeveloperList(apiGame.Developers),
+                        Genres = _listChecker.GetGenreList(apiGame.Genres),
+                        Platforms = _listChecker.GetPlatformList(apiGame.parent_platforms),
+                        Screenshots = _listChecker.GetScreenshotList(IdNamePair.Short_screenshots)
 
                     };
-
                     _dbContext.Games.Add(gameEnt);
                     _dbContext.SaveChanges();
                 }
