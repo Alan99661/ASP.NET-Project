@@ -29,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\VideoGameApplication.Api\VideoGameApplication.Api.csproj" />
     <ProjectReference Include="..\VideoGameApplication.Database\VideoGameApplication.Database.csproj" />
     <ProjectReference Include="..\VideoGameApplication.Models\VideoGameApplication.Models.csproj" />
     <ProjectReference Include="..\VideoGameApplication.Servises\VideoGameApplication.Servises.csproj" />

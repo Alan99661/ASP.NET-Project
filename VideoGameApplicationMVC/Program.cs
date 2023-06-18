@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Identity;
 using VideoGameApplication.Models.Entities;
 using VideoGameApplication.Database.Configuring;
 using VideoGameApplication.Servises.MicroServises;
+using VideoGameApplication.Api.Contracts;
+using VideoGameApplication.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +39,8 @@ builder.Services.AddScoped<IGetUpdateModels, GetUpdateModels>();
 builder.Services.AddScoped<IGetSelectModels, GetSelectModels>();
 builder.Services.AddScoped<IGetGameStats,GetGameStats>();
 builder.Services.AddScoped<ISmallMicroservises, SmallMicroservises>();
+builder.Services.AddScoped<HttpClient>();
+builder.Services.AddScoped<IAPIHandler,APIHandler>();
 
 builder.Services.AddRazorPages();
 
