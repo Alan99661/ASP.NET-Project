@@ -42,6 +42,7 @@ builder.Services.AddScoped<ISmallMicroservises, SmallMicroservises>();
 builder.Services.AddScoped<HttpClient>();
 builder.Services.AddScoped<IAPIHandler,APIHandler>();
 builder.Services.AddScoped<IAPIListChecker,APIListChecker>();
+builder.Services.AddScoped<ISearchEntities, SearchEntities>();
 
 builder.Services.AddRazorPages();
 

@@ -134,9 +134,10 @@
                 <blockquote class="blockquote mb-0">
                   <p>@review.Content</p>
                 </blockquote>
-                                        @if (review.User.Id == @UserManager.GetUserId(User))
+                                        @if (review.User.Id == @UserManager.GetUserId(User) && User.IsInRole("Admin"))
                                         {
                                          <a asp-action="UpdateReview" asp-controller="Review" asp-route-id="@review.Id" class="btn btn-primary">UpdateReview</a> 
+                                         <a asp-action="DeleteReview" asp-controller="Review" asp-route-id="@review.Id" class="btn btn-primary">DeleteReview</a> 
                                         }
                                     </div>
             </div>

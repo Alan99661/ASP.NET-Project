@@ -1,8 +1,12 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model GameSearchModel
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+        <form asp-action="SearchGames" asp-controller="Games" method="post">
+            <input asp-for="Name" class="form-control" placeholder="SearchGames.." />
+            <input type="submit" value="Search" class="btn btn-primary" />
+       </form>
 </div>

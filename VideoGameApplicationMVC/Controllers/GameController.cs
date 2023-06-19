@@ -15,13 +15,15 @@ namespace VideoGameApplicationMVC.Controllers
         private readonly IGetUpdateModels _getUpdateModels;
         private readonly IGetSelectModels _getSelectModel;
         private readonly IGetGameStats _gameStats;
+        private readonly ISearchEntities _searchEntities;
 
-        public GameController(IGameCrudOperations operations, IGetUpdateModels getUpdateModels, IGetSelectModels getSelectModel, IGetGameStats gameStats)
+        public GameController(IGameCrudOperations operations, IGetUpdateModels getUpdateModels, IGetSelectModels getSelectModel, IGetGameStats gameStats, ISearchEntities searchEntities)
         {
             this._operations = operations;
             _getUpdateModels = getUpdateModels;
             _getSelectModel = getSelectModel;
             _gameStats = gameStats;
+            _searchEntities = searchEntities;
         }
 
         public IActionResult Index()
@@ -81,6 +83,12 @@ namespace VideoGameApplicationMVC.Controllers
         {
             var res = _gameStats.GetTopGenres(id);
             return Json(res);
+        }
+        [HttpPost]
+        public async Task<IActionResult> SearchGames(GameSearchModel gameSearchModel)
+        {
+            List<GameViewModel> res = await _searchEntities.SearchGames(gameSearchModel);
+            return View();
         }
     }
 }
