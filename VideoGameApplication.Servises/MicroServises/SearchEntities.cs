@@ -33,17 +33,17 @@ namespace VideoGameApplication.Servises.MicroServises
                 gamesQuery = gamesQuery.Where(s => s.Name.Contains(searchModel.Name));
             }
 
-            if (searchModel.GenreId != null)
+            if (!string.IsNullOrEmpty(searchModel.GenreId))
             {
                 gamesQuery = gamesQuery.Where(s => s.Genres.Any(g => g.Id == searchModel.GenreId));
             }
 
-            if (searchModel.DeveloperId != null)
+            if (!string.IsNullOrEmpty(searchModel.DeveloperId))
             {
                 gamesQuery = gamesQuery.Where(s => s.Developers.Any(d => d.Id == searchModel.DeveloperId));
             }
 
-            if (searchModel.PlatformId != null)
+            if (!string.IsNullOrEmpty(searchModel.PlatformId))
             {
                 gamesQuery = gamesQuery.Where(s => s.Platforms.Any(p => p.Id == searchModel.PlatformId));
             }

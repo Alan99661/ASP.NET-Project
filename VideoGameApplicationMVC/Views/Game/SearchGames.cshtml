@@ -1,12 +1,72 @@
-﻿@model List<GameViewModel>;
+﻿@model GameSearchModel;
 <div class="container">
+    <div class="row">
+        <div class="col">
+
+            <form asp-action="SearchGames" asp-controller="Game" method="get" enctype="multipart/form-data">
+ <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ReleaseDate"></label>
+        <input asp-for="ReleaseDate" class="form-control" asp-format="{0:yyyy-MM-dd}" type="date"/>
+        <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+        <select asp-for="ReleaseParam">
+            <option value="1">Before</option>
+            <option value="2">On</option>
+            <option value="3">After</option>
+        </select>
+        <span asp-validation-for="ReleaseParam" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="MetacriticRating"></label>
+        <input asp-for="MetacriticRating" class="form-control"/>
+        <span asp-validation-for="MetacriticRating"></span>
+        <select asp-for="MetacriticParam">
+            <option value="1">Less Than</option>
+            <option value="2">Exactly</option>
+            <option value="3">More Than</option>
+        </select>
+        <span asp-validation-for="MetacriticParam" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DeveloperId">Select Developers</label>
+        <select asp-for="DeveloperId" id="devSelect">
+            <option value="">None</option>
+        </select>
+        <span asp-validation-for="DeveloperId"></span>
+    </div>	
+    <div class="form-group">
+        <label asp-for="GenreId">Select Genres</label>
+        <select asp-for="GenreId" id="genreSelect">
+            <option value="">None</option>
+        </select>
+        <span asp-validation-for="GenreId"></span>
+    </div>	
+    <div class="form-group">
+        <label asp-for="PlatformId">Select Platforms</label>
+        <select asp-for="PlatformId" id="platformSelect">
+            <option value="">None</option>
+        </select>
+        <span asp-validation-for="PlatformId"></span>
+    </div>	
+    <div class="form-group">
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </div>
+</form>
+
+        </div>
+        <div class="col">
+
   <h1 class="text-center display-4 text-gray" style="margin-bottom:10%">Results</h1>
   <div class="d-flex flex-wrap flex-row justify-content-around">
-        @if(Model == null)
+        @if(ViewBag.ViewList == null)
         {
             <h4>Nothing Found</h4>
         }
-        @foreach (var game in Model)
+        @foreach (var game in ViewBag.ViewList)
     {
       <div class="card" style="width: 25rem; min-height: 26rem;">
         <img class="card-img-top img-fluid" style="max-height: 60%;" src="@game.BackgroundImageUrl" alt="BackgroundImage">
@@ -18,4 +78,22 @@
       </div>
     }
   </div>
+        </div>
 </div>
+</div>
+
+@section Scripts{
+    <script>
+        var route = "/Developer/GetDeveloperSelectModel"
+        var select = "#devSelect"
+        SelectAppend(route,select);
+
+        var route = "/Platform/GetPlatformSelectModel"
+        var select = "#platformSelect"
+        SelectAppend(route,select);
+
+        var route = "/Genre/GetGenreSelectModel"
+        var select = "#genreSelect"
+        SelectAppend(route,select);
+    </script>
+}

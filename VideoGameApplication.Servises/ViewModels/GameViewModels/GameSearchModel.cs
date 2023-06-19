@@ -8,7 +8,7 @@ namespace VideoGameApplication.Servises.ViewModels.GameViewModels
 {
     public class GameSearchModel
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public DateTime? ReleaseDate { get; set; }
         public int? ReleaseParam { get; set; }
         public string? DeveloperId { get; set; }

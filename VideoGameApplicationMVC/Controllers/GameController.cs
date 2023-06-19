@@ -88,7 +88,8 @@ namespace VideoGameApplicationMVC.Controllers
         public async Task<IActionResult> SearchGames(GameSearchModel gameSearchModel)
         {
             List<GameViewModel> res = await _searchEntities.SearchGames(gameSearchModel);
-            return View(res);
+            ViewBag.ViewList = res;
+            return View();
         }
     }
 }
