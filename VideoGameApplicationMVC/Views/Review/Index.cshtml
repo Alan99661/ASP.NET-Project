@@ -1,0 +1,28 @@
+﻿@model List<ReviewViewModel>
+<div class="container">
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Game</th>
+                <th>Users</th>
+                <th>Content</th>
+                <th>Info</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model)
+            {
+                <tr>
+                    <td>@obj.Game.Name</td>
+                    <td>@obj.UserName</td>
+                    <td>@obj.Content</td>
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-primary" href="@Url.Action("getbyid", "review", new { id = obj.Id })">Info</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

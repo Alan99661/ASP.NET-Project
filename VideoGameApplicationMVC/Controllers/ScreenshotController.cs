@@ -20,17 +20,17 @@ namespace VideoGameApplicationMVC.Controllers
 			_getUpdateModel = getUpdateModel;
 			_getSelectModel = getSelectModels;
 		}
-
+		[Authorize(Roles ="Admin")]
 		public IActionResult Index()
 		{
 			var res = _operations.GetAll();
 			return View(res);
 		}
-		public IActionResult GetById(string id)
-		{
-			var res = _operations.GetById(id);
-			return View(res);
-		}
+		//public IActionResult GetById(string id)
+		//{
+		//	var res = _operations.GetById(id);
+		//	return View(res);
+		//}
 		[Authorize(Roles = "Admin")]
 		public IActionResult CreateScreenshot()
 		{

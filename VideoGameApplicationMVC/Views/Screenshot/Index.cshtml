@@ -1,0 +1,18 @@
+﻿@model List<ScreenshotViewModel>
+<div class="container">
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model)
+            {
+                <tr>
+                    <td><img src="@obj.Url"/></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

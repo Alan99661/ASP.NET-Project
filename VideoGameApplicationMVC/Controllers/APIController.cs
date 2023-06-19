@@ -22,7 +22,7 @@ namespace VideoGameApplicationMVC.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Games()
         {
-            var APIGameIdResult =await _handler.GetGameIds("05075852ec4844f7b273505b481247ff", 5);
+            var APIGameIdResult =await _handler.GetGameIds("05075852ec4844f7b273505b481247ff", 10);
             var games = await _handler.GetAPIGames("05075852ec4844f7b273505b481247ff", APIGameIdResult);
 
             return Json(games);

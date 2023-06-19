@@ -6,6 +6,7 @@ using VideoGameApplication.Servises.Contracts.Other;
 using VideoGameApplication.Servises.Contracts.UpdateModelGet;
 using VideoGameApplication.Servises.ViewModels.GameViewModels;
 using VideoGameApplication.Servises.ViewModels.GameViewModels;
+using X.PagedList;
 
 namespace VideoGameApplicationMVC.Controllers
 {
@@ -30,6 +31,16 @@ namespace VideoGameApplicationMVC.Controllers
         {
             var res = _operations.GetAll();
             return View(res);
+        }
+        public IActionResult IndexPaged(int? page)
+        {
+            var res = _operations.GetAll();
+            var pageNumber = page ?? 1;
+            var onePageOfProducts = res.ToPagedList(pageNumber, 9);
+            ViewBag.OnePageOfGames = onePageOfProducts;
+            return View("IndexPaged");
+
+
         }
         public IActionResult GetById(string id)
         {
