@@ -34,7 +34,7 @@ namespace VideoGameApplicationMVC.Controllers
 		public IActionResult CreateReview(string id)
 		{
             ViewData["gameId"] = id;
-            return PartialView();
+            return View("CreateReview");
 		}
 		public IActionResult CreateReviewPost(ReviewAddModel model)
 		{
@@ -43,7 +43,7 @@ namespace VideoGameApplicationMVC.Controllers
 				return View(model.GameId, model);
 			}
 			var res = _operations.CreateReview(model);
-			return Redirect("/Review/GetById/" + res.Id);
+			return Redirect("/Game/GetById/" + res.Id);
 		}
 		public IActionResult UpdateReview(string id)
 		{

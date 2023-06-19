@@ -121,7 +121,7 @@
 </div>
       <div class="row">
         <div class="col d-flex flex-column nowrap">
-          <partial partial="_CreateReview" controller="Review" model="@Model.Id" />
+          <a asp-action="CreateReview" asp-controller="Review" asp-route-id="@Model.Id" class="btn btn-primary">Review</a>
           @foreach (var review in Model.Reviews)
           {
             <div class="card">
