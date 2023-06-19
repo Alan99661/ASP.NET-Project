@@ -15,6 +15,10 @@
       </div>
     }
   </div>
-  @Html.PagedListPager( (IPagedList)ViewBag.OnePageOfGames, page => Url.Action("Index", new { page }) )
+  @Html.PagedListPager((X.PagedList.IPagedList) Model, page => Url.Action("Index", new {page = page,
+searchfor = @Context.Request.Query["searchfor"], searchby = @Context.Request.Query["searchby"]}),
+new X.PagedList.Web.Common.PagedListRenderOptions {
+    LiElementClasses = new string[] {"page-item"},
+    PageClasses = new string[] { "page-link fw-bold" } } );
 </div>
 </div>
