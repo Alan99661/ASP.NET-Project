@@ -102,6 +102,8 @@ namespace VideoGameApplication.Servises.CrudOperations
                     review.UserName = user.UserName;
                     review.User = user;
                 }
+                review.Content = updateModel.Content;
+                review.UserName = updateModel.UserName;
                 context.Update(review);
                 context.SaveChanges();
 

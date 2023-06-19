@@ -1,4 +1,6 @@
 ﻿@model GameViewModel;
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<User> UserManager
 
 <div class="container-fluid bg-white">
   <div class="row">
@@ -69,7 +71,7 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row" style="margin:1rem;">
         <div class="col">
             <div class="d-flex justify-content-around">
   <div class="card">
@@ -119,12 +121,12 @@
             </div>
                         }
 </div>
-      <div class="row">
+      <div class="row" style="margin:1rem">
         <div class="col d-flex flex-column nowrap">
           <a asp-action="CreateReview" asp-controller="Review" asp-route-id="@Model.Id" class="btn btn-primary">Review</a>
           @foreach (var review in Model.Reviews)
           {
-            <div class="card">
+            <div class="card" style="margin-top:1rem">
               <div class="card-header">
                 @review.UserName
               </div>
@@ -132,7 +134,11 @@
                 <blockquote class="blockquote mb-0">
                   <p>@review.Content</p>
                 </blockquote>
-              </div>
+                                        @if (review.User.Id == @UserManager.GetUserId(User))
+                                        {
+                                         <a asp-action="UpdateReview" asp-controller="Review" asp-route-id="@review.Id" class="btn btn-primary">UpdateReview</a> 
+                                        }
+                                    </div>
             </div>
           }
         </div>
