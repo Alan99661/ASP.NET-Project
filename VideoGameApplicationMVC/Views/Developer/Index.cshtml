@@ -1,5 +1,14 @@
 ﻿@model List<DeveloperViewModel>
 
-@foreach(var dev in Model){
-	<p>@dev.Name</p>
-}
+	<div class="container">
+
+	@foreach(var dev in Model)
+	{
+	<div class="row">
+			<h5 class="text-center text-gray">@dev.Name</h5>
+			@foreach(var game in dev.Games.Take(5))
+			{
+				<p class="text-center">@game.Name</p>
+			}
+	</div>
+	}

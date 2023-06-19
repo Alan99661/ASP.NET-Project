@@ -15,20 +15,27 @@ namespace VideoGameApplication.Servises.MicroServises
 	{
 		private readonly VideoGameDBContext context;
 
-		public List<Genre> GetTopGenres(string gameid )
+		public GetGameStats(VideoGameDBContext context)
 		{
-			var game = context.Games.Include(s =>s.Genres).FirstOrDefault(s => s.Id == gameid);
-			List<Genre> Topgenres = new List<Genre>();
-			foreach (var genre in game.Genres)
-			{
-				var sorted = genre.Games.OrderByDescending(e => e.MetacriticRating).ToList();
-				var top = sorted.Take(10);
-				if (top.Contains(game))
-				{
-					Topgenres.Add(genre);
-				}
-			}
-			return Topgenres;
+			this.context = context;
+		}
+
+		public List<Genre>? GetTopGenres(string gameid )
+		{
+			var game = context.Games
+		.Include(s => s.Genres)
+		.FirstOrDefault(s => s.Id == gameid);
+
+			List<Genre> topGenres = game.Genres
+				.SelectMany(genre => genre.Games)
+				.OrderByDescending(g => g.MetacriticRating)
+				.Take(10)
+				.Where(g => g.Id == gameid)
+				.SelectMany(g => g.Genres)
+				.Distinct()
+				.ToList();
+
+			return topGenres;
 		}
 	}
 }

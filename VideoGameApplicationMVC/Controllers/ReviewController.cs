@@ -31,11 +31,10 @@ namespace VideoGameApplicationMVC.Controllers
 			var res = _operations.GetById(id);
 			return View(res);
 		}
-
 		public IActionResult CreateReview(string id)
 		{
-			ViewData["gameId"] = id;
-			return View();
+            ViewData["gameId"] = id;
+            return PartialView();
 		}
 		public IActionResult CreateReviewPost(ReviewAddModel model)
 		{

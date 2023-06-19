@@ -24,7 +24,7 @@ namespace VideoGameApplication.Api.Servises
 
         public async Task<APIGameIdResult> GetGameIds(string key, int count)
         {
-            var endpoint = $"https://api.rawg.io/api/games?page_size={count}&key={key}";
+            var endpoint = $"https://api.rawg.io/api/games?ordering=relevance&platforms=13&page_size={count}&key={key}";
             var httpResponseMessage = await _httpClient.GetAsync(endpoint);
             if (httpResponseMessage.IsSuccessStatusCode)
             {

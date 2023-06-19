@@ -1,27 +1,36 @@
 ﻿@model GameViewModel;
 
-<div class="container-fluid bg-white border border-dark">
+<div class="container-fluid bg-white">
   <div class="row">
     <div class="stacked">
-      <img src="@Model.BackgroundImageUrl" class="media" style="width:100%; aspect-ratio:16/9;"/>
+      <img src="@Model.BackgroundImageUrl" class="media" style="width:100%; aspect-ratio:16/9;" />
       <p>@Model.Name</p>
       @if (User.IsInRole("Admin"))
-      { 
+      {
         <a asp-action="UpdateGame" asp-controller="Game" asp-route-id="@Model.Id" class="btn btn-primary">Update</a>
         <a asp-action="DeleteGamePost" asp-controller="Game" asp-route-id="@Model.Id" class="btn btn-primary">Delete</a>
       }
     </div>
   </div>
 
-  <div class="row">
+  <div class="row"  style="padding:0.5%">
     <div class="col">
-        <div class="row">
-
+      <div class="row" >
+        <div class="card" style="margin-bottom:3rem;">
+          <div class="card-header">
+            Description
+          </div>
+          <div class="card-body">
+            <blockquote class="blockquote mb-0">
+              <p>@Model.Description</p>
+            </blockquote>
+          </div>
         </div>
-      <div class="row">
+      </div>
+      <div id="cardrow" class="row" style="min-height: fit-content;">
         <div class="col">
           <div class="d-flex justify-content-around">
-            <div class="card" style="width: 29rem; height: 7rem;">
+            <div class="card" style="min-width: 29rem;min-height: 4rem;">
               <div class="card-header">
                 Platforms
               </div>
@@ -33,7 +42,7 @@
               </ul>
             </div>
 
-            <div class="card" style="width: 29rem; height: 7rem;">
+            <div class="card" style="min-width: 29rem; min-height: 4rem;">
               <div class="card-header">
                 Genres
               </div>
@@ -45,7 +54,7 @@
               </ul>
             </div>
 
-            <div class="card" style="width: 29rem; height: 7rem;">
+            <div class="card" style="min-width: 29rem; min-height: 4rem;">
               <div class="card-header">
                 Developers
               </div>
@@ -56,15 +65,65 @@
                 }
               </ul>
             </div>
+
           </div>
         </div>
       </div>
-      
+      <div class="row">
+        <div class="col">
+            <div class="d-flex justify-content-around">
+  <div class="card">
+    <div class="card-header">
+      Release Date
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>@Model.ReleaseDate</p>
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      Game Website
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <a href="@Model.GameWebsite">@Model.GameWebsite</a>
+      </blockquote>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      MetacriticRating
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>@Model.MetacriticRating</p>
+      </blockquote>
+    </div>
+  </div>
+ @if(ViewBag.TopGenres != null)
+                        {    
+            <div class="card" style= "min-height: 2rem;">
+              <div class="card-header">
+                Top in:
+              </div>
+              <ul class="list-group list-group-flush">
+                @foreach (var genre in ViewBag.Topgenres)
+                {
+                  <a asp-action="GetById" asp-controller="Developer" asp-route-id="@genre.Id" class="list-group-item list-group-item-action">@genre.Name Genre</a>
+                }
+              </ul>
+            </div>
+                        }
+</div>
       <div class="row">
         <div class="col d-flex flex-column nowrap">
-          @foreach(var review in Model.Reviews)
+          <partial partial="_CreateReview" controller="Review" model="@Model.Id" />
+          @foreach (var review in Model.Reviews)
           {
-            @* @if(review.Certified){<div class="card text-white bg-warning mb-3">}*@
             <div class="card">
               <div class="card-header">
                 @review.UserName
@@ -81,6 +140,17 @@
     </div>
   </div>
 </div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            var route = "/Game/CheckTopGenres/@Model.Id";
+            var select = "#cardrow";
+          //  CreateTopgameCard(route, select);
+        });
+    </script>
+}
+
 
 
 

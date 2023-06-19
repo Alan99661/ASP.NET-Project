@@ -1,6 +1,14 @@
 ﻿@model List<PlatformViewModel>;
 
-@foreach(var platform in Model)
-{
-	<p>@platform.Name</p>
-}
+<div class="container">
+
+	@foreach(var platform in Model)
+	{
+	<div class="row">
+			<h5 class="text-center text-gray">@platform.Name</h5>
+			@foreach(var game in platform.Games.Take(5))
+			{
+				<p class="text-center">@game.Name</p>
+			}
+	</div>
+	}

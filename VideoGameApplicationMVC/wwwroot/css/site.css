@@ -28,7 +28,10 @@ body {
     align-items: end;
     justify-items: center;
     isolation: isolate;
-    width: min(15em,70%);
+    padding:0%;
+    overflow: hidden;
+    margin-bottom:3rem;
+    //width: min(15em,70%);
 }
 
     .stacked > * {
@@ -42,7 +45,7 @@ body {
     .stacked p {
         //font-weight: 999;
         justify-self: start;
-        font-size: 2rem;
+        font-size: 8rem;
         color: white;
         margin-inline-start: 0.2em;
         text-shadow: 2px 2px 4px #000000;
@@ -76,8 +79,16 @@ body {
             padding-inline: 0.45em;
         }
 
-        .truncate {
-            white-space: nowrap;
-            overflow: scroll ;
-            text-overflow: ellipsis;
-        }
+.truncate {
+   // white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+}
+
+.maincont {
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 0%;
+    min-height: fit-content;
+}

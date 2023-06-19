@@ -4,11 +4,11 @@
   <div class="d-flex flex-wrap flex-row justify-content-around">
     @foreach (var game in Model)
     {
-      <div class="card" style="width: 25rem; height: 20rem;">
+      <div class="card" style="width: 25rem; min-height: 26rem;">
         <img class="card-img-top img-fluid" style="max-height: 60%;" src="@game.BackgroundImageUrl" alt="BackgroundImage">
         <div class="card-body">
-          <h5 class="card-title truncate">@game.Name</h5>
-          <p class="card-text">@game.Description</p>
+          <h5 class="card-title">@game.Name</h5>
+          <p style="height: 4.5rem" class="card-text truncate">@game.Description</p>
           <a asp-action="GetById" asp-controller="Game" asp-route-id="@game.Id" class="btn btn-primary">Info</a>
         </div>
       </div>

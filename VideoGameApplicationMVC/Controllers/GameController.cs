@@ -31,7 +31,8 @@ namespace VideoGameApplicationMVC.Controllers
         }
         public IActionResult GetById(string id)
         {
-            var res = _operations.GetById(id);
+            ViewBag.TopGenres = _gameStats.GetTopGenres(id);
+			var res = _operations.GetById(id);
             return View(res);
         }
 		[Authorize(Roles = "Admin")]
