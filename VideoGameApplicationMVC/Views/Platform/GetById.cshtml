@@ -1,3 +1,21 @@
-﻿@model PlatformViewModel
+﻿@model PlatformViewModel;
 
-<p>@Model.Name</p>
+	<div class="container">
+
+	
+	<div class="row">
+			<h5 class="text-center text-gray">Games on @Model.Name</h5>
+			<div class="flex-row">
+			@foreach(var game in Model.Games.Take(3))
+			{
+				<div class="card" style="width: 25rem; min-height: 26rem;">
+        <img class="card-img-top img-fluid" style="max-height: 60%;" src="@game.BackgroundImageUrl" alt="BackgroundImage">
+        <div class="card-body">
+          <h5 class="card-title">@game.Name</h5>
+          <p style="height: 4.5rem" class="card-text truncate">@game.Description</p>
+          <a asp-action="GetById" asp-controller="Game" asp-route-id="@game.Id" class="btn btn-primary">Info</a>
+        </div>
+      </div>
+			}
+			</div>
+	</div>
