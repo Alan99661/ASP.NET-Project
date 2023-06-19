@@ -26,7 +26,7 @@ namespace VideoGameApplication.Servises.MicroServises
 
         public async Task<List<GameViewModel>?> SearchGames(GameSearchModel searchModel)
         {
-            IQueryable<Game> gamesQuery = context.Games;
+            IQueryable<Game> gamesQuery = context.Games.Select(s => s);
 
             if (!string.IsNullOrEmpty(searchModel.Name))
             {

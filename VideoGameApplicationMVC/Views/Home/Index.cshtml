@@ -5,7 +5,7 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-        <form asp-action="SearchGames" asp-controller="Games" method="post">
+        <form asp-action="SearchGames" asp-controller="Game" method="get" enctype="multipart/form-data">
             <input asp-for="Name" class="form-control" placeholder="SearchGames.." />
             <input type="submit" value="Search" class="btn btn-primary" />
        </form>

@@ -84,11 +84,11 @@ namespace VideoGameApplicationMVC.Controllers
             var res = _gameStats.GetTopGenres(id);
             return Json(res);
         }
-        [HttpPost]
+
         public async Task<IActionResult> SearchGames(GameSearchModel gameSearchModel)
         {
             List<GameViewModel> res = await _searchEntities.SearchGames(gameSearchModel);
-            return View();
+            return View(res);
         }
     }
 }
