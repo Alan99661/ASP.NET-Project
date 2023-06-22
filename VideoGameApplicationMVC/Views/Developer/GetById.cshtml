@@ -5,8 +5,8 @@
 	
 	<div class="row">
 			<h5 class="text-center text-gray">Games by @Model.Name</h5>
-			<div class="flex-row">
-			@foreach(var game in Model.Games.Take(3))
+			<div class="flex-wrap">
+			@foreach(var game in Model.Games)
 			{
 				<div class="card" style="width: 25rem; min-height: 26rem;">
         <img class="card-img-top img-fluid" style="max-height: 60%;" src="@game.BackgroundImageUrl" alt="BackgroundImage">

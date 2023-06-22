@@ -12,7 +12,7 @@ namespace VideoGameApplication.Servises.ViewModels.ReviewViewModels
         public string Id { get; set; }
         public User User { get; set; }
         public string UserName { get; set; }
-        public Game Game { get; set; }
+        public virtual Game Game { get; set; }
         public string Content { get; set; }
     }
 }

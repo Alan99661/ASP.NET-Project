@@ -43,7 +43,7 @@ namespace VideoGameApplicationMVC.Controllers
 				return View(model.GameId, model);
 			}
 			var res = _operations.CreateReview(model);
-			return Redirect("/Game/GetById/" + res.Id);
+			return Redirect("/Game/GetById/" + res.Game.Id);
 		}
 		public IActionResult UpdateReview(string id)
 		{
@@ -57,7 +57,7 @@ namespace VideoGameApplicationMVC.Controllers
 				return View(model.GameId,model);
 			}
 			var res = _operations.UpdateReview(model);
-			return Redirect("/Review/GetById/" + res.Id);
+			return Redirect("/Game/GetById/" + res.Game.Id);
 		}
 		public IActionResult DeleteReviewPost(string id)
 		{

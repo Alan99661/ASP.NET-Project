@@ -43,6 +43,12 @@ builder.Services.AddScoped<HttpClient>();
 builder.Services.AddScoped<IAPIHandler,APIHandler>();
 builder.Services.AddScoped<IAPIListChecker,APIListChecker>();
 builder.Services.AddScoped<ISearchEntities, SearchEntities>();
+builder.Services.ConfigureApplicationCookie(options =>
+{
+	options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+	options.LoginPath = "/Identity/Account/LogIn";
+});
+
 
 builder.Services.AddRazorPages();
 
