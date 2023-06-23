@@ -12,9 +12,9 @@ namespace VideoGameApplicationMVC.Controllers
 	{
 		private readonly IReviewCrudOperations _operations;
 		private readonly IGetUpdateModels _getUpdateModel;
-		private readonly ISmallMicroservises _smallMicro;
+		private readonly IReviewActions _smallMicro;
 
-		public ReviewController(IReviewCrudOperations operations, IGetUpdateModels getUpdateModel, ISmallMicroservises SmallMicro)
+		public ReviewController(IReviewCrudOperations operations, IGetUpdateModels getUpdateModel, IReviewActions SmallMicro)
 		{
 			_operations = operations;
 			_getUpdateModel = getUpdateModel;

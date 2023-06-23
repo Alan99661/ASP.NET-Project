@@ -38,7 +38,7 @@ builder.Services.AddScoped<IGenreCrudOperations, GenreCrudOperations>();
 builder.Services.AddScoped<IGetUpdateModels, GetUpdateModels>();
 builder.Services.AddScoped<IGetSelectModels, GetSelectModels>();
 builder.Services.AddScoped<IGetGameStats,GetGameStats>();
-builder.Services.AddScoped<ISmallMicroservises, SmallMicroservises>();
+builder.Services.AddScoped<IReviewActions, ReviewActions>();
 builder.Services.AddScoped<HttpClient>();
 builder.Services.AddScoped<IAPIHandler,APIHandler>();
 builder.Services.AddScoped<IAPIListChecker,APIListChecker>();

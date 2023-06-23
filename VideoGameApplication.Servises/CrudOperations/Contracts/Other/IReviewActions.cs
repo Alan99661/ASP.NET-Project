@@ -2,7 +2,7 @@
 
 namespace VideoGameApplication.Servises.Contracts.Other
 {
-    public interface ISmallMicroservises
+    public interface IReviewActions
     {
         ReviewViewModel CertifyReview(string id);
     }

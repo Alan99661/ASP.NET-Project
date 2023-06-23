@@ -10,7 +10,7 @@ using VideoGameApplication.Servises.ViewModels.ReviewViewModels;
 
 namespace VideoGameApplication.Servises.MicroServises
 {
-    public class SmallMicroservises : ISmallMicroservises
+    public class ReviewActions : IReviewActions
 	{
 		private readonly VideoGameDBContext context;
 		private readonly IMapper mapper;
