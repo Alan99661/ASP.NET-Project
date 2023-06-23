@@ -8,19 +8,22 @@ using System.Threading.Tasks;
 using VideoGameApplication.Database;
 using VideoGameApplication.Models.Entities;
 using VideoGameApplication.Servises.Contracts.Other;
+using VideoGameApplication.Servises.ViewModels.GenreViewModels;
 
 namespace VideoGameApplication.Servises.MicroServises
 {
     public class GetGameStats : IGetGameStats
 	{
 		private readonly VideoGameDBContext context;
+		private readonly IMapper mapper;
 
-		public GetGameStats(VideoGameDBContext context)
+		public GetGameStats(VideoGameDBContext context, IMapper mapper)
 		{
 			this.context = context;
+			this.mapper = mapper;
 		}
 
-		public List<Genre>? GetTopGenres(string gameid )
+		public List<GenreViewModel>? GetTopGenres(string gameid )
 		{
 			var game = context.Games
 		.Include(s => s.Genres)
@@ -35,7 +38,7 @@ namespace VideoGameApplication.Servises.MicroServises
 				.Distinct()
 				.ToList();
 
-			return topGenres;
+			return mapper.Map<List<GenreViewModel>>(topGenres);
 		}
 	}
 }

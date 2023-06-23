@@ -1,9 +1,10 @@
 ﻿using VideoGameApplication.Models.Entities;
+using VideoGameApplication.Servises.ViewModels.GenreViewModels;
 
 namespace VideoGameApplication.Servises.Contracts.Other
 {
     public interface IGetGameStats
     {
-        List<Genre> GetTopGenres(string id);
+        List<GenreViewModel> GetTopGenres(string id);
     }
 }

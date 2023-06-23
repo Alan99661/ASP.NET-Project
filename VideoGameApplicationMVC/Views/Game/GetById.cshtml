@@ -1,16 +1,16 @@
-﻿@model GameViewModel;
-@using Microsoft.AspNetCore.Identity
+﻿@model GameWithStatsViewModel;
+@using Microsoft.AspNetCore.Identity;
 @inject UserManager<User> UserManager
 
 <div class="container-fluid bg-white">
   <div class="row">
     <div class="stacked">
-      <img src="@Model.BackgroundImageUrl" class="media" style="width:100%; aspect-ratio:16/9;" />
-      <p>@Model.Name</p>
+      <img src="@Model.Game.BackgroundImageUrl" class="media" style="width:100%; aspect-ratio:16/9;" />
+      <p>@Model.Game.Name</p>
       @if (User.IsInRole("Admin"))
       {
-        <a asp-action="UpdateGame" asp-controller="Game" asp-route-id="@Model.Id" class="btn btn-primary">Update</a>
-        <a asp-action="DeleteGamePost" asp-controller="Game" asp-route-id="@Model.Id" class="btn btn-primary">Delete</a>
+        <a asp-action="UpdateGame" asp-controller="Game" asp-route-id="@Model.Game.Id" class="btn btn-primary">Update</a>
+        <a asp-action="DeleteGamePost" asp-controller="Game" asp-route-id="@Model.Game.Id" class="btn btn-primary">Delete</a>
       }
     </div>
   </div>
@@ -25,7 +25,7 @@
             <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
           </ol>
           <div class="carousel-inner">
-            @foreach (var scr in Model.Screenshots)
+            @foreach (var scr in Model.Game.Screenshots)
             {
               <div class="carousel-item">
                 <img class="d-block" src="@scr.Url" alt="screenshot">
@@ -49,7 +49,7 @@
           </div>
           <div class="card-body">
             <blockquote class="blockquote mb-0">
-              <p>@Model.Description</p>
+              <p>@Model.Game.Description</p>
             </blockquote>
           </div>
         </div>
@@ -62,7 +62,7 @@
                 Platforms
               </div>
               <ul class="list-group list-group-flush">
-                @foreach (var platform in Model.Platforms)
+                @foreach (var platform in Model.Game.Platforms)
                 {
                   <li class="list-group-item list-group-item-action">
                     <a asp-action="GetById" asp-controller="Platform" asp-route-id="@platform.Id">@platform.Name</a>
@@ -76,7 +76,7 @@
                 Genres
               </div>
               <ul class="list-group list-group-flush">
-                @foreach (var genre in Model.Genres)
+                @foreach (var genre in Model.Game.Genres)
                 {
                   <li class="list-group-item list-group-item-action">
                     <a asp-action="GetById" asp-controller="Genre" asp-route-id="@genre.Id">@genre.Name</a>
@@ -90,7 +90,7 @@
                 Developers
               </div>
               <ul class="list-group list-group-flush">
-                @foreach (var developer in Model.Developers)
+                @foreach (var developer in Model.Game.Developers)
                 {
                   <li class="list-group-item list-group-item-action">
                     <a asp-action="GetById" asp-controller="Developer" asp-route-id="@developer.Id">@developer.Name</a>
@@ -110,7 +110,7 @@
               </div>
               <div class="card-body">
                 <blockquote class="blockquote mb-0">
-                  <p>@Model.ReleaseDate</p>
+                  <p>@Model.Game.ReleaseDate</p>
                 </blockquote>
               </div>
             </div>
@@ -121,7 +121,7 @@
               </div>
               <div class="card-body">
                 <blockquote class="blockquote mb-0">
-                  <a href="@Model.GameWebsite">@Model.GameWebsite</a>
+                  <a href="@Model.Game.GameWebsite">@Model.Game.GameWebsite</a>
                 </blockquote>
               </div>
             </div>
@@ -132,18 +132,18 @@
               </div>
               <div class="card-body">
                 <blockquote class="blockquote mb-0">
-                  <p>@Model.MetacriticRating</p>
+                  <p>@Model.Game.MetacriticRating</p>
                 </blockquote>
               </div>
             </div>
-            @if (ViewBag.TopGenres != null)
+            @if (Model.TopGenres != null)
             {
               <div class="card" style="min-height: 2rem;">
                 <div class="card-header">
                   Top in:
                 </div>
                 <ul class="list-group list-group-flush">
-                  @foreach (var genre in ViewBag.TopGenres)
+                  @foreach (var genre in Model.TopGenres)
                   {
                     <li class="list-group-item list-group-item-action">
                       <a asp-action="GetById" asp-controller="Developer" asp-route-id="@genre.Id">@genre.Name Genre</a>
@@ -155,8 +155,8 @@
           </div>
           <div class="row" style="margin:1rem">
             <div class="col d-flex flex-column nowrap">
-              <a asp-action="CreateReview" asp-controller="Review" asp-route-id="@Model.Id" class="btn btn-primary">Review</a>
-              @foreach (var review in Model.Reviews)
+              <a asp-action="CreateReview" asp-controller="Review" asp-route-id="@Model.Game.Id" class="btn btn-primary">Review</a>
+              @foreach (var review in Model.Game.Reviews)
               {
                 <div class="card" style="margin-top:1rem">
                   <div class="card-header">
@@ -181,17 +181,6 @@
     </div>
   </div>
 </div>
-
-
-@section Scripts {
-    <script>
-        $(document).ready(function() {
-            var route = "/Game/CheckTopGenres/@Model.Id";
-            var select = "#cardrow";
-          //  CreateTopgameCard(route, select);
-        });
-    </script>
-}
 
 
 

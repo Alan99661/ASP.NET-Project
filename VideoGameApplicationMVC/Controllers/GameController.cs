@@ -4,6 +4,7 @@ using System.Data;
 using VideoGameApplication.Servises.Contracts.CrudOperations;
 using VideoGameApplication.Servises.Contracts.Other;
 using VideoGameApplication.Servises.Contracts.UpdateModelGet;
+using VideoGameApplication.Servises.ViewModels.CollectionVIewModels;
 using VideoGameApplication.Servises.ViewModels.GameViewModels;
 using VideoGameApplication.Servises.ViewModels.GameViewModels;
 using X.PagedList;
@@ -44,9 +45,12 @@ namespace VideoGameApplicationMVC.Controllers
         }
         public IActionResult GetById(string id)
         {
-            ViewBag.TopGenres = _gameStats.GetTopGenres(id);
-			var res = _operations.GetById(id);
-            return View(res);
+            var game = new GameWithStatsViewModel()
+            {
+                Game = _operations.GetById(id),
+			TopGenres = _gameStats.GetTopGenres(id)
+            };
+            return View(game);
         }
 		[Authorize(Roles = "Admin")]
 		public IActionResult CreateGame()
