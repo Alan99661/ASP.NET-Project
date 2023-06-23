@@ -64,9 +64,7 @@
               <ul class="list-group list-group-flush">
                 @foreach (var platform in Model.Game.Platforms)
                 {
-                  <li class="list-group-item list-group-item-action">
-                    <a asp-action="GetById" asp-controller="Platform" asp-route-id="@platform.Id">@platform.Name</a>
-                  </li>
+                    <a asp-action="GetById" asp-controller="Platform" asp-route-id="@platform.Id" class="list-group-item list-group-item-action">@platform.Name</a>
                 }
               </ul>
             </div>
@@ -78,9 +76,7 @@
               <ul class="list-group list-group-flush">
                 @foreach (var genre in Model.Game.Genres)
                 {
-                  <li class="list-group-item list-group-item-action">
-                    <a asp-action="GetById" asp-controller="Genre" asp-route-id="@genre.Id">@genre.Name</a>
-                  </li>
+                    <a asp-action="GetById" asp-controller="Genre" asp-route-id="@genre.Id" class="list-group-item list-group-item-action">@genre.Name</a>
                 }
               </ul>
             </div>
@@ -92,9 +88,7 @@
               <ul class="list-group list-group-flush">
                 @foreach (var developer in Model.Game.Developers)
                 {
-                  <li class="list-group-item list-group-item-action">
-                    <a asp-action="GetById" asp-controller="Developer" asp-route-id="@developer.Id">@developer.Name</a>
-                  </li>
+                    <a asp-action="GetById" asp-controller="Developer" asp-route-id="@developer.Id" class="list-group-item list-group-item-action">@developer.Name</a>
                 }
               </ul>
             </div>
@@ -163,15 +157,23 @@
                     @review.UserName
                   </div>
                   <div class="card-body">
+                      @if(@review.Certified){
+                          <p style="font-weight:400">Cirtified</p>
+                      }
                     <blockquote class="blockquote mb-0">
                       <p>@review.Content</p>
                     </blockquote>
-                    @if (review.User.Id == @UserManager.GetUserId(User) && User.IsInRole("Admin"))
+                    @if (review.User.Id == @UserManager.GetUserId(User) || User.IsInRole("Admin"))
                     {
                       <a asp-action="UpdateReview" asp-controller="Review" asp-route-id="@review.Id" class="btn btn-primary">Update Review</a>
                       <a asp-action="DeleteReview" asp-controller="Review" asp-route-id="@review.Id" class="btn btn-primary">Delete Review</a>
                     }
-                  </div>
+
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                           <a asp-action="CertifyReview" asp-controller="Review" asp-route-id="@review.Id" class="btn btn-primary"> Certify Review </a>
+                                        }
+                    </div>
                 </div>
               }
             </div>
