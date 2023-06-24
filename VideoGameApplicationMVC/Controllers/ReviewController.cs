@@ -68,7 +68,7 @@ namespace VideoGameApplicationMVC.Controllers
 		public IActionResult CertifyReview(string id)
 		{
 			var res = _smallMicro.CertifyReview(id);
-			return RedirectToAction("Index");
+			return RedirectToAction("/Game/GetById/" + res.Game.Id);
 		}
 	}
 }

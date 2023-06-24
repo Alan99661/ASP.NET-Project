@@ -15,11 +15,18 @@ namespace VideoGameApplication.Servises.MicroServises
 		private readonly VideoGameDBContext context;
 		private readonly IMapper mapper;
 
-		public ReviewViewModel CertifyReview(string id)
+        public ReviewActions(VideoGameDBContext context, IMapper mapper)
+        {
+            this.context = context;
+            this.mapper = mapper;
+        }
+
+        public ReviewViewModel CertifyReview(string id)
 		{
 			var review = context.Reviews.FirstOrDefault(s => s.Id == id);
 			review.Certified = true;
 			context.Reviews.Update(review);
+			context.SaveChanges();
 			return mapper.Map<ReviewViewModel>(review);
 		}
 	}
