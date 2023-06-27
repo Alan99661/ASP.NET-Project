@@ -7,9 +7,9 @@ using VideoGameApplication.Api.Contracts;
 
 namespace VideoGameApplication.Api.Models
 {
-    public class APIsearchGame : IAPIModel
+    public class ApiSearchGame : IApiModel
     {
-        public List<APIScreenshot> Short_screenshots { get; set; }
+        public List<ApiScreenshot> Short_screenshots { get; set; }
         public long Id { get; set; }
         public string Name { get; set; }
     }

@@ -13,9 +13,9 @@ namespace VideoGameApplicationMVC.Controllers
 {
     public class APIController : Controller
     {
-        private readonly IAPIHandler _handler;
+        private readonly IApiFetcher _handler;
 
-        public APIController(IAPIHandler handler)
+        public APIController(IApiFetcher handler)
         {
             _handler = handler;
         }

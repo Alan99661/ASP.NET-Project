@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace VideoGameApplication.Api.Models
 {
-    public class APIResult
+    public class ApiResult
     { 
-        public List<APIGame> Results { get; set; }
+        public List<ApiGame> Results { get; set; }
     }
 }

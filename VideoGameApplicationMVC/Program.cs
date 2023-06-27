@@ -40,8 +40,8 @@ builder.Services.AddScoped<IGetSelectModels, GetSelectModels>();
 builder.Services.AddScoped<IGetGameStats,GetGameStats>();
 builder.Services.AddScoped<IReviewActions, ReviewActions>();
 builder.Services.AddScoped<HttpClient>();
-builder.Services.AddScoped<IAPIHandler,APIHandler>();
-builder.Services.AddScoped<IAPIListChecker,APIListChecker>();
+builder.Services.AddScoped<IApiFetcher,ApiFetcher>();
+builder.Services.AddScoped<IApiListChecker,ApiListChecker>();
 builder.Services.AddScoped<ISearchEntities, SearchEntities>();
 builder.Services.ConfigureApplicationCookie(options =>
 {

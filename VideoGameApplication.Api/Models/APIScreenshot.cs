@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VideoGameApplication.Api.Models
 {
-    public class APIScreenshot
+    public class ApiScreenshot
     {
         public string Image { get; set; }
     }

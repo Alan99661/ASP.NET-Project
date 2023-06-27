@@ -9,27 +9,27 @@ using VideoGameApplication.Models.Entities;
 
 namespace VideoGameApplication.Api.Servises
 {
-    public class APIHandler : IAPIHandler
+    public class ApiFetcher : IApiFetcher
     {
         private readonly HttpClient _httpClient;
         private readonly VideoGameDBContext _dbContext;
-        private readonly IAPIListChecker _listChecker;
+        private readonly IApiListChecker _listChecker;
 
-        public APIHandler(HttpClient httpClient, VideoGameDBContext dbContext, IAPIListChecker listChecker)
+        public ApiFetcher(HttpClient httpClient, VideoGameDBContext dbContext, IApiListChecker listChecker)
         {
             _httpClient = httpClient;
             _dbContext = dbContext;
             _listChecker = listChecker;
         }
 
-        public async Task<APIGameIdResult> GetGameIds(string key, int count)
+        public async Task<ApiGameIdResult> GetGameIds(string key, int count)
         {
             var endpoint = $"https://api.rawg.io/api/games?ordering=relevance&key={key}";
             var httpResponseMessage = await _httpClient.GetAsync(endpoint);
             if (httpResponseMessage.IsSuccessStatusCode)
             {
                 var json = await httpResponseMessage.Content.ReadAsStringAsync();
-                var IdNamePairs = JsonSerializer.Deserialize<APIGameIdResult>(json,
+                var IdNamePairs = JsonSerializer.Deserialize<ApiGameIdResult>(json,
                     new JsonSerializerOptions
                     {
                         PropertyNameCaseInsensitive = true
@@ -39,7 +39,7 @@ namespace VideoGameApplication.Api.Servises
             return null;
         }
 
-        public async Task<string> GetAPIGames(string key, APIGameIdResult gameIdResult)
+        public async Task<string> GetAPIGames(string key, ApiGameIdResult gameIdResult)
         {
             foreach (var IdNamePair in gameIdResult.Results)
             {
@@ -49,7 +49,7 @@ namespace VideoGameApplication.Api.Servises
                 if (httpResponseMessage.IsSuccessStatusCode)
                 {
                     var gameJson = await httpResponseMessage.Content.ReadAsStringAsync();
-                    var apiGame = JsonSerializer.Deserialize<APIGame>(gameJson, new JsonSerializerOptions
+                    var apiGame = JsonSerializer.Deserialize<ApiGame>(gameJson, new JsonSerializerOptions
                     {
                         PropertyNameCaseInsensitive = true
                     });
@@ -62,10 +62,10 @@ namespace VideoGameApplication.Api.Servises
                         BackgroundImageUrl = apiGame.background_image,
                         MetacriticRating = apiGame.Metacritic,
                         GameWebsite = apiGame.Website,
-                        Developers = _listChecker.GetDeveloperList(apiGame.Developers),
-                        Genres = _listChecker.GetGenreList(apiGame.Genres),
-                        Platforms = _listChecker.GetPlatformList(apiGame.parent_platforms),
-                        Screenshots = _listChecker.GetScreenshotList(IdNamePair.Short_screenshots)
+                        Developers = _listChecker.CheckDeveloperList(apiGame.Developers),
+                        Genres = _listChecker.CheckGenreList(apiGame.Genres),
+                        Platforms = _listChecker.CheckPlatformList(apiGame.parent_platforms),
+                        Screenshots = _listChecker.CheckScreenshotList(IdNamePair.Short_screenshots)
 
                     };
                     _dbContext.Games.Add(gameEnt);

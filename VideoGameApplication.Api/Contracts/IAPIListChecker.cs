@@ -3,11 +3,11 @@ using VideoGameApplication.Models.Entities;
 
 namespace VideoGameApplication.Api.Contracts
 {
-    public interface IAPIListChecker
+    public interface IApiListChecker
     {
-        List<Developer> GetDeveloperList(List<APIModel> apidevs);
-        List<Genre> GetGenreList(List<APIModel> apigenres);
-        List<Platform> GetPlatformList(List<APIPlatforms> apiPlatforms);
-        List<Screenshot> GetScreenshotList(List<APIScreenshot> apiscreenshots);
+        List<Developer> CheckDeveloperList(List<ApiModel> apidevs);
+        List<Genre> CheckGenreList(List<ApiModel> apigenres);
+        List<Platform> CheckPlatformList(List<ApiPlatforms> apiPlatforms);
+        List<Screenshot> CheckScreenshotList(List<ApiScreenshot> apiscreenshots);
     }
 }

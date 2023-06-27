@@ -10,16 +10,16 @@ using VideoGameApplication.Models.Entities;
 
 namespace VideoGameApplication.Api.Servises
 {
-    public class APIListChecker : IAPIListChecker
+    public class ApiListChecker : IApiListChecker
     {
         private readonly VideoGameDBContext dbContext;
 
-        public APIListChecker(VideoGameDBContext dbContext)
+        public ApiListChecker(VideoGameDBContext dbContext)
         {
             this.dbContext = dbContext;
         }
 
-        public List<Developer> GetDeveloperList(List<APIModel> apidevs)
+        public List<Developer> CheckDeveloperList(List<ApiModel> apidevs)
         {
             var developers = new List<Developer>();
             foreach (var dev in apidevs)
@@ -40,7 +40,7 @@ namespace VideoGameApplication.Api.Servises
             return developers;
         }
 
-        public List<Genre> GetGenreList(List<APIModel> apigenres)
+        public List<Genre> CheckGenreList(List<ApiModel> apigenres)
         {
             var genres = new List<Genre>();
             foreach (var genre in apigenres)
@@ -61,7 +61,7 @@ namespace VideoGameApplication.Api.Servises
             return genres;
         }
 
-        public List<Screenshot> GetScreenshotList(List<APIScreenshot> apiscreenshots)
+        public List<Screenshot> CheckScreenshotList(List<ApiScreenshot> apiscreenshots)
         {
             var screenshots = new List<Screenshot>();
             foreach (var scr in apiscreenshots)
@@ -83,7 +83,7 @@ namespace VideoGameApplication.Api.Servises
             return screenshots;
         }
 
-        public List<Platform> GetPlatformList(List<APIPlatforms> apiPlatforms)
+        public List<Platform> CheckPlatformList(List<ApiPlatforms> apiPlatforms)
         {
             var platforms = new List<Platform>();
             foreach (var platform in apiPlatforms)

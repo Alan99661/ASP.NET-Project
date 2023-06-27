@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace VideoGameApplication.Api.Models
 {
-    public class APIPlatforms
+    public class ApiPlatforms
     {
-        public APIModel Platform { get; set; }
+        public ApiModel Platform { get; set; }
     }
 }
