@@ -5,19 +5,12 @@
 	@foreach(var genre in Model)
 	{
 	<div class="row">
-			<h5 class="text-center text-gray">@genre.Name</h5>
-			<div class="flex-row">
+			<h5 class="text-center display-4 light-text">@genre.Name</h5>
+			<div class="d-flex flex-wrap justify-content-around">
 			@foreach(var game in genre.Games.Take(3))
-			{
-				<div class="card" style="width: 25rem; min-height: 26rem;">
-        <img class="card-img-top img-fluid" style="max-height: 60%;" src="@game.BackgroundImageUrl" alt="BackgroundImage">
-        <div class="card-body">
-          <h5 class="card-title">@game.Name</h5>
-          <p style="height: 4.5rem" class="card-text truncate">@game.Description</p>
-          <a asp-action="GetById" asp-controller="Game" asp-route-id="@game.Id" class="btn btn-primary">Info</a>
-        </div>
-      </div>
-			}
+				{
+					@Html.Partial("~/Views/Game/_GameCardLiteral.cshtml",game)
+				}
 			</div>
 	</div>
 	<a asp-action="GetById" asp-controller="Genre" asp-route-id="@genre.Id" class="btn btn-primary">More</a>
