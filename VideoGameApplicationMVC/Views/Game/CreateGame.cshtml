@@ -1,5 +1,6 @@
 ﻿@model GameAddModel
-
+<div class="form-container">
+<h1 class="text-white">Create Game</h1>
 <form asp-action="CreateGamePost" asp-controller="Game" method="post" enctype="multipart/form-data">
  <div class="form-group">
         <label asp-for="Name"></label>
@@ -46,15 +47,11 @@
         <select asp-for="PlatformIds" id="platformSelect"></select>
         <span asp-validation-for="PlatformIds"></span>
     </div>	
- @*   <div class="form-group">
-        <label asp-for="ScreenshotIds"></label>
-        <select asp-for="ScreenshotIds" id="screenshotSelect"/>
-        <span asp-validation-for="ScreenshotIds"></span>
-    </div>*@
     <div class="form-group">
         <input type="submit" value="Create" class="btn btn-primary" />
     </div>
 </form>
+</div>
 @section Scripts{
     <script>
         var route = "/Developer/GetDeveloperSelectModel"

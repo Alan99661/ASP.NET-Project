@@ -1,7 +1,8 @@
 ﻿@model ReviewAddModel
 @using Microsoft.AspNetCore.Identity
 @inject UserManager<User> UserManager
-
+<div class="form-container">
+<h1 class="text-white">Create Review</h1>
 <form asp-action="CreateReviewPost" asp-controller="Review" method="post" enctype="multipart/form-data">
     <input hidden asp-for="GameId" value="@ViewData["gameId"]"/>
     <input hidden asp-for="UserId" value="@UserManager.GetUserId(User)"/>
@@ -14,4 +15,5 @@
         <input type="submit" value="Create" class="btn btn-primary" />
     </div>
 </form>
+</div>
 

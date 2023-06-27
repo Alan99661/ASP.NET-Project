@@ -1,5 +1,6 @@
 ﻿@model GenreAddModel;
-
+<div class="form-container">
+<h1 class="text-white">Create Genre</h1>
 <form asp-action="CreateGenrePost" asp-controller="Genre" method="post" enctype="multipart/form-data">
  <div class="form-group">
         <label asp-for="Name"></label>
@@ -15,6 +16,7 @@
         <input type="submit" value="Create" class="btn btn-primary" />
     </div>
 </form>
+</div>
 @section Scripts{
     <script>
         var route = "/Game/GetGameSelectModel"

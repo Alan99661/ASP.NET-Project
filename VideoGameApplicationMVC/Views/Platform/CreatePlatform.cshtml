@@ -1,6 +1,7 @@
 ﻿@model PlatformAddModel
 
-
+<div class="form-container">
+<h1 class="text-white">Create Platform</h1>
 <form asp-action="CreatePlatformPost" asp-controller="Platform" method="post" enctype="multipart/form-data">
  <div class="form-group">
         <label asp-for="Name"></label>
@@ -16,6 +17,7 @@
         <input type="submit" value="Create" class="btn btn-primary" />
     </div>
 </form>
+</div>
 @section Scripts{
     <script>
         var route = "/Game/GetGameSelectModel"

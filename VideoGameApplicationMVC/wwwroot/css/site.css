@@ -75,10 +75,19 @@ body {
     background-color: #738FA7;
 }
 
-.reviewflex{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+.reviewflex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
+.form-container {
+    display:flex;
+    flex-direction:column;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 2rem;
+    min-height: fit-content;
+    background-color: #738FA7;
+}

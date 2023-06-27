@@ -1,5 +1,6 @@
 ﻿@model GameUpdateModel
-
+<div class="form-container">
+<h1 class="text-white">Update Game</h1>
 <form asp-action="UpdateGamePost" asp-controller="Game" method="post" enctype="multipart/form-data">
     <input hidden asp-for="Id"/>
  <div class="form-group">
@@ -51,6 +52,7 @@
         <input type="submit" value="Update" class="btn btn-primary" />
     </div>
 </form>
+</div>
 @section Scripts{
     <script>
         var route = "/Developer/GetDeveloperSelectModel"

@@ -1,6 +1,8 @@
 ﻿
 @model PlatformUpdateModel;
 
+<div class="form-container">
+<h1 class="text-white">Update Platform</h1>
 <form asp-action="UpdatePlatformPost" asp-controller="Platform" method="post" enctype="multipart/form-data">
     <input hidden asp-for="Id" />
  <div class="form-group">
@@ -17,6 +19,7 @@
         <input type="submit" value="Update" class="btn btn-primary" />
     </div>
 </form>
+</div>
 @section Scripts{
     <script>
     var route = "/Game/GetGameSelectModel"
