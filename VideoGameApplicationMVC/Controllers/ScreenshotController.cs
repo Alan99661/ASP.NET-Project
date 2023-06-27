@@ -25,11 +25,6 @@ namespace VideoGameApplicationMVC.Controllers
 			var res = _operations.GetAll();
 			return View(res);
 		}
-		//public IActionResult GetById(string id)
-		//{
-		//	var res = _operations.GetById(id);
-		//	return View(res);
-		//}
 		[Authorize(Roles = "Admin")]
 		public IActionResult CreateScreenshot()
 		{
@@ -67,10 +62,5 @@ namespace VideoGameApplicationMVC.Controllers
 			var res = _operations.DeleteScreenshot(id);
 			return RedirectToAction("Index");
 		}
-		//public IActionResult GetScreenshotSelectModel()
-		//{
-		//	var models = _getSelectModel.GetScreenshotSelectModels();
-		//	return Json(models);
-		//}
 	}
 }
