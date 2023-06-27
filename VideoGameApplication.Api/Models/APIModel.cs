@@ -9,7 +9,7 @@ namespace VideoGameApplication.Api.Models
 {
     public class ApiModel : IApiModel
     {
-        public long Id { get ; set; }
+        public int Id { get ; set; }
         public string Name { get; set; }
     }
 }

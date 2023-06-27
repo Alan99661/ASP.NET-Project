@@ -2,7 +2,7 @@
 {
     public interface IApiModel
     {
-        long Id { get; set; }
+        int Id { get; set; }
         string Name { get; set; }
     }
 }

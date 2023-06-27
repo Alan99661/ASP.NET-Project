@@ -10,7 +10,7 @@ namespace VideoGameApplication.Api.Models
     public class ApiSearchGame : IApiModel
     {
         public List<ApiScreenshot> Short_screenshots { get; set; }
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
     }
 }
