@@ -2,13 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using VideoGameApplication.Servises.Contracts.CrudOperations;
-using VideoGameApplication.Servises.Contracts.Other;
-using VideoGameApplication.Servises.Contracts.UpdateModelGet;
+using VideoGameApplication.Servises.Contracts.SmallServices;
 using VideoGameApplication.Servises.ViewModels.ReviewViewModels;
 
 namespace VideoGameApplicationMVC.Controllers
 {
-	public class ReviewController : Controller
+    public class ReviewController : Controller
 	{
 		private readonly IReviewCrudOperations _operations;
 		private readonly IGetUpdateModels _getUpdateModel;

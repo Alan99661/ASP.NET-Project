@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VideoGameApplication.Database;
-using VideoGameApplication.Servises.Contracts.Other;
+using VideoGameApplication.Servises.Contracts.SmallServices;
 using VideoGameApplication.Servises.ViewModels.SelectModels;
 
 namespace VideoGameApplication.Servises.OtherOperations

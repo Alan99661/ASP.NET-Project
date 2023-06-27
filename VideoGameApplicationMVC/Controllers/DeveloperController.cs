@@ -3,8 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Threading.Tasks;
 using VideoGameApplication.Servises.Contracts.CrudOperations;
-using VideoGameApplication.Servises.Contracts.Other;
-using VideoGameApplication.Servises.Contracts.UpdateModelGet;
+using VideoGameApplication.Servises.Contracts.SmallServices;
 using VideoGameApplication.Servises.OtherOperations;
 using VideoGameApplication.Servises.ViewModels.DeveloperViewModels;
 
