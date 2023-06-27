@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col">
 
-            <form asp-action="SearchGames" asp-controller="Game" method="get" enctype="multipart/form-data">
+            <form asp-action="SearchGames" asp-controller="Game" method="get" enctype="multipart/form-data" class="window">
  <div class="form-group">
         <label asp-for="Name"></label>
         <input asp-for="Name" class="form-control" />
@@ -60,15 +60,15 @@
         </div>
         <div class="col">
 
-  <h1 class="text-center display-4 text-gray" style="margin-bottom:10%">Results</h1>
-  <div class="d-flex flex-wrap flex-row justify-content-around">
+  <h1 class="text-center display-4 light-text" style="margin-bottom:10%">Results</h1>
+  <div class="d-flex flex-wrap justify-content-around">
         @if(ViewBag.ViewList == null)
         {
-            <h4>Nothing Found</h4>
+            <h4 class="light-text">Nothing Found</h4>
         }
         @foreach (var game in ViewBag.ViewList)
     {
-      <div class="card" style="width: 25rem; min-height: 26rem;">
+      <div class="card" style="width: 15rem; min-height: 16rem;">
         <img class="card-img-top img-fluid" style="max-height: 60%;" src="@game.BackgroundImageUrl" alt="BackgroundImage">
         <div class="card-body">
           <h5 class="card-title">@game.Name</h5>

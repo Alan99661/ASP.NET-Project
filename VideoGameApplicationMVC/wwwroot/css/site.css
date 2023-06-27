@@ -20,6 +20,10 @@ html {
 body {
     margin-bottom: 60px;
     background-color: #0C4160;
+    color: #071330;
+    font-family:Roboto;
+}
+.light-text {
     color: #C3CEDA;
 }
 
@@ -54,5 +58,27 @@ body {
     border: solid 1px #071330;
     color: #071330;
     transition: 0.25s;
+}
+
+.reviewbtn {
+    height: 3rem;
+    font-size: 2rem;
+    background-color: #C3CEDA;
+    color: #071330;
+}
+
+.window {
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 0%;
+    min-height: fit-content;
+    background-color: #738FA7;
+}
+
+.reviewflex{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
 }
 

@@ -1,0 +1,10 @@
+﻿@model GameViewModel;
+
+ <div class="card mb-4" style="width: 25rem; height: 26rem;">
+        <img class="card-img-top img-fluid" style="max-height: 50%;" src="@Model.BackgroundImageUrl" alt="BackgroundImage">
+        <div class="card-body">
+          <h5 class="card-title">@Model.Name</h5>
+          <p style="max-height: 4.5rem" class="card-text truncate">@Model.Description</p>
+          <a asp-action="GetById" asp-controller="Game" asp-route-id="@Model.Id" class="btn">Info</a>
+        </div>
+      </div>
