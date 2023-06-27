@@ -2,13 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using VideoGameApplication.Servises.Contracts.CrudOperations;
-using VideoGameApplication.Servises.Contracts.Other;
-using VideoGameApplication.Servises.Contracts.UpdateModelGet;
+using VideoGameApplication.Servises.Contracts.SmallServices;
 using VideoGameApplication.Servises.ViewModels.ReviewViewModels;
 
 namespace VideoGameApplicationMVC.Controllers
 {
-	public class ReviewController : Controller
+    public class ReviewController : Controller
 	{
 		private readonly IReviewCrudOperations _operations;
 		private readonly IGetUpdateModels _getUpdateModel;
@@ -31,12 +30,14 @@ namespace VideoGameApplicationMVC.Controllers
 			var res = _operations.GetById(id);
 			return View(res);
 		}
-		public IActionResult CreateReview(string id)
+        [Authorize]
+        public IActionResult CreateReview(string id)
 		{
             ViewData["gameId"] = id;
             return View("CreateReview");
 		}
-		public IActionResult CreateReviewPost(ReviewAddModel model)
+        [Authorize]
+        public IActionResult CreateReviewPost(ReviewAddModel model)
 		{
 			if (!ModelState.IsValid)
 			{
@@ -45,12 +46,14 @@ namespace VideoGameApplicationMVC.Controllers
 			var res = _operations.CreateReview(model);
 			return Redirect("/Game/GetById/" + res.Game.Id);
 		}
-		public IActionResult UpdateReview(string id)
+        [Authorize]
+        public IActionResult UpdateReview(string id)
 		{
 			var model = _getUpdateModel.GetReviewUpdateModel(id);
 			return View(model);
 		}
-		public IActionResult UpdateReviewPost(ReviewUpdateModel model)
+        [Authorize]
+        public IActionResult UpdateReviewPost(ReviewUpdateModel model)
 		{
 			if (!ModelState.IsValid)
 			{
@@ -68,7 +71,7 @@ namespace VideoGameApplicationMVC.Controllers
 		public IActionResult CertifyReview(string id)
 		{
 			var res = _smallMicro.CertifyReview(id);
-			return RedirectToAction("/Game/GetById/" + res.Game.Id);
+			return Redirect("/Game/GetById/" + res.Game.Id);
 		}
 	}
 }

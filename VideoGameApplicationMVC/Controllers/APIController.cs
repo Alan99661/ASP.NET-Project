@@ -20,10 +20,11 @@ namespace VideoGameApplicationMVC.Controllers
             _handler = handler;
         }
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Games()
+        public async Task<IActionResult> FetchGames()
         {
-            var APIGameIdResult =await _handler.GetGameIds("05075852ec4844f7b273505b481247ff", 10);
-            var games = await _handler.GetAPIGames("05075852ec4844f7b273505b481247ff", APIGameIdResult);
+            string apikey = "05075852ec4844f7b273505b481247ff";
+            var APIGameIdResult = await _handler.GetGameIds(apikey, 50);
+            var games = await _handler.GetAPIGames(apikey, APIGameIdResult);
 
             return Json(games);
         }

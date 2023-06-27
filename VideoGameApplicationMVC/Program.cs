@@ -2,8 +2,6 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using VideoGameApplication.Database;
 using VideoGameApplication.Servises.Contracts.CrudOperations;
-using VideoGameApplication.Servises.Contracts.Other;
-using VideoGameApplication.Servises.Contracts.UpdateModelGet;
 using VideoGameApplication.Servises.CrudOperations;
 using VideoGameApplication.Servises.MapConfig;
 using VideoGameApplication.Servises.OtherOperations;
@@ -13,6 +11,7 @@ using VideoGameApplication.Database.Configuring;
 using VideoGameApplication.Servises.MicroServises;
 using VideoGameApplication.Api.Contracts;
 using VideoGameApplication.Api.Servises;
+using VideoGameApplication.Servises.Contracts.SmallServices;
 
 var builder = WebApplication.CreateBuilder(args);
 

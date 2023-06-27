@@ -2,13 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using VideoGameApplication.Servises.Contracts.CrudOperations;
-using VideoGameApplication.Servises.Contracts.Other;
-using VideoGameApplication.Servises.Contracts.UpdateModelGet;
+using VideoGameApplication.Servises.Contracts.SmallServices;
 using VideoGameApplication.Servises.ViewModels.GenreViewModels;
 
 namespace VideoGameApplicationMVC.Controllers
 {
-	public class GenreController : Controller
+    public class GenreController : Controller
 	{
 		private readonly IGenreCrudOperations _operations;
 		private readonly IGetUpdateModels _getUpdateModel;

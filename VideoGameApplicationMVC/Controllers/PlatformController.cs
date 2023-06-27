@@ -2,8 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using VideoGameApplication.Servises.Contracts.CrudOperations;
-using VideoGameApplication.Servises.Contracts.Other;
-using VideoGameApplication.Servises.Contracts.UpdateModelGet;
+using VideoGameApplication.Servises.Contracts.SmallServices;
 using VideoGameApplication.Servises.ViewModels.PlatformViewModels;
 using VideoGameApplication.Servises.ViewModels.PlatformViewModels;
 

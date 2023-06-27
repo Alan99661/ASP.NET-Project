@@ -1,6 +1,6 @@
 ﻿using VideoGameApplication.Servises.ViewModels.SelectModels;
 
-namespace VideoGameApplication.Servises.Contracts.Other
+namespace VideoGameApplication.Servises.Contracts.SmallServices
 {
     public interface IGetSelectModels
     {

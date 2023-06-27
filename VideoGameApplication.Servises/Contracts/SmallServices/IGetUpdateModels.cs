@@ -6,7 +6,7 @@ using VideoGameApplication.Servises.ViewModels.PlatformViewModels;
 using VideoGameApplication.Servises.ViewModels.ReviewViewModels;
 using VideoGameApplication.Servises.ViewModels.ScreenshotViewModels;
 
-namespace VideoGameApplication.Servises.Contracts.UpdateModelGet
+namespace VideoGameApplication.Servises.Contracts.SmallServices
 {
     public interface IGetUpdateModels
     {

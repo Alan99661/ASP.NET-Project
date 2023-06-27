@@ -2,13 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using VideoGameApplication.Servises.Contracts.CrudOperations;
-using VideoGameApplication.Servises.Contracts.Other;
-using VideoGameApplication.Servises.Contracts.UpdateModelGet;
+using VideoGameApplication.Servises.Contracts.SmallServices;
 using VideoGameApplication.Servises.ViewModels.ScreenshotViewModels;
 
 namespace VideoGameApplicationMVC.Controllers
 {
-	public class ScreenshotController : Controller
+    public class ScreenshotController : Controller
 	{
 		private readonly IScreenshotCrudOperations _operations;
 		private readonly IGetUpdateModels _getUpdateModel;
@@ -26,11 +25,6 @@ namespace VideoGameApplicationMVC.Controllers
 			var res = _operations.GetAll();
 			return View(res);
 		}
-		//public IActionResult GetById(string id)
-		//{
-		//	var res = _operations.GetById(id);
-		//	return View(res);
-		//}
 		[Authorize(Roles = "Admin")]
 		public IActionResult CreateScreenshot()
 		{
@@ -68,10 +62,5 @@ namespace VideoGameApplicationMVC.Controllers
 			var res = _operations.DeleteScreenshot(id);
 			return RedirectToAction("Index");
 		}
-		//public IActionResult GetScreenshotSelectModel()
-		//{
-		//	var models = _getSelectModel.GetScreenshotSelectModels();
-		//	return Json(models);
-		//}
 	}
 }

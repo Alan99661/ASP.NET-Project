@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using VideoGameApplication.Database;
 using VideoGameApplication.Models.Entities;
-using VideoGameApplication.Servises.Contracts.Other;
+using VideoGameApplication.Servises.Contracts.SmallServices;
 using VideoGameApplication.Servises.ViewModels.GameViewModels;
 
 namespace VideoGameApplication.Servises.MicroServises

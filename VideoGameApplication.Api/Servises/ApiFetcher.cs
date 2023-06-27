@@ -24,7 +24,7 @@ namespace VideoGameApplication.Api.Servises
 
         public async Task<ApiGameIdResult> GetGameIds(string key, int count)
         {
-            var endpoint = $"https://api.rawg.io/api/games?ordering=relevance&key={key}";
+            var endpoint = $"https://api.rawg.io/api/games?ordering=relevance&pages={count}&key={key}";
             var httpResponseMessage = await _httpClient.GetAsync(endpoint);
             if (httpResponseMessage.IsSuccessStatusCode)
             {
@@ -41,39 +41,49 @@ namespace VideoGameApplication.Api.Servises
 
         public async Task<string> GetAPIGames(string key, ApiGameIdResult gameIdResult)
         {
-            foreach (var IdNamePair in gameIdResult.Results)
+            try
             {
-                if (_dbContext.Games.FirstOrDefault(x => x.Name == IdNamePair.Name.ToString()) != null) continue;
-                var endpoint = $"https://api.rawg.io/api/games/{IdNamePair.Id}?&key={key}";
-                var httpResponseMessage = await _httpClient.GetAsync(endpoint);
-                if (httpResponseMessage.IsSuccessStatusCode)
+                foreach (var IdNamePair in gameIdResult.Results)
                 {
-                    var gameJson = await httpResponseMessage.Content.ReadAsStringAsync();
-                    var apiGame = JsonSerializer.Deserialize<ApiGame>(gameJson, new JsonSerializerOptions
+                    if (_dbContext.Games.FirstOrDefault(x => x.Name == IdNamePair.Name.ToString()) != null) continue;
+                    var endpoint = $"https://api.rawg.io/api/games/{IdNamePair.Id}?&key={key}";
+                    var httpResponseMessage = await _httpClient.GetAsync(endpoint);
+                    if (httpResponseMessage.IsSuccessStatusCode)
                     {
-                        PropertyNameCaseInsensitive = true
-                    });
+                        var gameJson = await httpResponseMessage.Content.ReadAsStringAsync();
+                        var apiGame = JsonSerializer.Deserialize<ApiGame>(gameJson, new JsonSerializerOptions
+                        {
+                            PropertyNameCaseInsensitive = true
+                        });
 
-                    var gameEnt = new Game()
-                    {
-                        Name = apiGame.Name,
-                        ReleaseDate = Convert.ToDateTime(apiGame.Released),
-                        Description = apiGame.Description_raw,
-                        BackgroundImageUrl = apiGame.background_image,
-                        MetacriticRating = apiGame.Metacritic,
-                        GameWebsite = apiGame.Website,
-                        Developers = _listChecker.CheckDeveloperList(apiGame.Developers),
-                        Genres = _listChecker.CheckGenreList(apiGame.Genres),
-                        Platforms = _listChecker.CheckPlatformList(apiGame.parent_platforms),
-                        Screenshots = _listChecker.CheckScreenshotList(IdNamePair.Short_screenshots)
+                        var gameEnt = new Game()
+                        {
+                            Name = apiGame.Name,
+                            ReleaseDate = Convert.ToDateTime(apiGame.Released),
+                            Description = apiGame.Description_raw,
+                            BackgroundImageUrl = apiGame.background_image,
+                            MetacriticRating = apiGame.Metacritic,
+                            GameWebsite = apiGame.Website,
+                            Developers = _listChecker.CheckDeveloperList(apiGame.Developers),
+                            Genres = _listChecker.CheckGenreList(apiGame.Genres),
+                            Platforms = _listChecker.CheckPlatformList(apiGame.parent_platforms),
+                            Screenshots = _listChecker.CheckScreenshotList(IdNamePair.Short_screenshots)
 
-                    };
-                    _dbContext.Games.Add(gameEnt);
-                    _dbContext.SaveChanges();
+                        };
+                        _dbContext.Games.Add(gameEnt);
+                        _dbContext.SaveChanges();
+                    }
                 }
+
+                return "Gucci";
             }
-            return "Gucci";
+
+            catch (Exception ex)
+            {
+                return "Not Gucci";
+            }
         }
+
 
     }
 }

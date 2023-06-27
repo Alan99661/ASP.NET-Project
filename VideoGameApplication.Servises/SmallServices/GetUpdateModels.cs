@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VideoGameApplication.Database;
-using VideoGameApplication.Servises.Contracts.UpdateModelGet;
+using VideoGameApplication.Servises.Contracts.SmallServices;
 using VideoGameApplication.Servises.ViewModels.DeveloperViewModels;
 using VideoGameApplication.Servises.ViewModels.GameViewModels;
 using VideoGameApplication.Servises.ViewModels.GenreViewModels;

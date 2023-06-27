@@ -14,5 +14,6 @@ namespace VideoGameApplication.Servises.ViewModels.ReviewViewModels
         public string UserName { get; set; }
         public virtual Game Game { get; set; }
         public string Content { get; set; }
+        public bool Certified { get; set; }
     }
 }
