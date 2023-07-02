@@ -17,11 +17,13 @@ namespace VideoGameApplication.Servises.MicroServises
     {
         private readonly VideoGameDBContext context;
         private readonly IMapper mapper;
+        private readonly IGameSearchFilters filters;
 
-        public SearchEntities(VideoGameDBContext context, IMapper mapper)
+        public SearchEntities(VideoGameDBContext context, IMapper mapper , IGameSearchFilters filters)
         {
             this.context = context;
             this.mapper = mapper;
+            this.filters = filters;
         }
 
         public async Task<List<GameViewModel>?> SearchGames(GameSearchModel searchModel)
@@ -30,54 +32,32 @@ namespace VideoGameApplication.Servises.MicroServises
 
             if (!string.IsNullOrEmpty(searchModel.Name))
             {
-                gamesQuery = gamesQuery.Where(s => s.Name.Contains(searchModel.Name));
+                gamesQuery = filters.FilterByName(gamesQuery, searchModel.Name);
             }
 
             if (!string.IsNullOrEmpty(searchModel.GenreId))
             {
-                gamesQuery = gamesQuery.Where(s => s.Genres.Any(g => g.Id == searchModel.GenreId));
+                gamesQuery = filters.FilterByGenre(gamesQuery, searchModel.GenreId);
             }
 
             if (!string.IsNullOrEmpty(searchModel.DeveloperId))
             {
-                gamesQuery = gamesQuery.Where(s => s.Developers.Any(d => d.Id == searchModel.DeveloperId));
+                gamesQuery = filters.FilterByDeveloper(gamesQuery, searchModel.DeveloperId);
             }
 
             if (!string.IsNullOrEmpty(searchModel.PlatformId))
             {
-                gamesQuery = gamesQuery.Where(s => s.Platforms.Any(p => p.Id == searchModel.PlatformId));
+                gamesQuery = filters.FilterByPlatform(gamesQuery, searchModel.PlatformId);
             }
 
             if (searchModel.ReleaseDate != null && searchModel.ReleaseParam != null)
             {
-                switch (searchModel.ReleaseParam)
-                {
-                    case 1:
-                        gamesQuery = gamesQuery.Where(s => s.ReleaseDate < searchModel.ReleaseDate);
-                        break;
-                    case 2:
-                        gamesQuery = gamesQuery.Where(s => s.ReleaseDate == searchModel.ReleaseDate);
-                        break;
-                    case 3:
-                        gamesQuery = gamesQuery.Where(s => s.ReleaseDate > searchModel.ReleaseDate);
-                        break;
-                }
+                gamesQuery = filters.FilterByRelease(gamesQuery, searchModel.ReleaseDate, searchModel.ReleaseParam);
             }
 
             if (searchModel.MetacriticRating != null && searchModel.MetacriticParam != null)
             {
-                switch (searchModel.MetacriticParam)
-                {
-                    case 1:
-                        gamesQuery = gamesQuery.Where(s => s.MetacriticRating < searchModel.MetacriticRating);
-                        break;
-                    case 2:
-                        gamesQuery = gamesQuery.Where(s => s.MetacriticRating == searchModel.MetacriticRating);
-                        break;
-                    case 3:
-                        gamesQuery = gamesQuery.Where(s => s.MetacriticRating > searchModel.MetacriticRating);
-                        break;
-                }
+                gamesQuery = filters.FilterByRating(gamesQuery, searchModel.MetacriticRating, searchModel.MetacriticParam);
             }
 
             List<Game> games = await gamesQuery.ToListAsync();

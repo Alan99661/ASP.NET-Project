@@ -12,6 +12,7 @@ using VideoGameApplication.Servises.MicroServises;
 using VideoGameApplication.Api.Contracts;
 using VideoGameApplication.Api.Servises;
 using VideoGameApplication.Servises.Contracts.SmallServices;
+using VideoGameApplication.Servises.SmallServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,6 +43,8 @@ builder.Services.AddScoped<HttpClient>();
 builder.Services.AddScoped<IApiFetcher,ApiFetcher>();
 builder.Services.AddScoped<IApiListChecker,ApiListChecker>();
 builder.Services.AddScoped<ISearchEntities, SearchEntities>();
+builder.Services.AddScoped<IGameSearchFilters, GameSearchFilters>();
+
 builder.Services.ConfigureApplicationCookie(options =>
 {
 	options.AccessDeniedPath = "/Identity/Account/AccessDenied";
