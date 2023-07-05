@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VideoGameApplication.Database;
 
@@ -11,9 +12,11 @@ using VideoGameApplication.Database;
 namespace VideoGameApplication.Database.Migrations
 {
     [DbContext(typeof(VideoGameDBContext))]
-    partial class VideoGameDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230705195417_ReviewPlayTime")]
+    partial class ReviewPlayTime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

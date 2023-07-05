@@ -15,5 +15,6 @@ namespace VideoGameApplication.Models.Entities
         public virtual Game Game { get; set; }
         public string Content { get; set; }
 		public bool Certified { get; set; }
+        public float PlayTimeHours { get; set; }
     }
 }

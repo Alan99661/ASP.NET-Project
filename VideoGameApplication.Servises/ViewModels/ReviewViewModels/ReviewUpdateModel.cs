@@ -14,5 +14,6 @@ namespace VideoGameApplication.Servises.ViewModels.ReviewViewModels
         public string GameId { get; set; }
         public string Content { get; set; }
         public string UserName { get; set; }
-    }
+		public float? PlayTimeHours { get; set; }
+	}
 }
