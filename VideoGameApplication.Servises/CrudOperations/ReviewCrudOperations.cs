@@ -102,6 +102,7 @@ namespace VideoGameApplication.Servises.CrudOperations
                     review.UserName = user.UserName;
                     review.User = user;
                 }
+                review.PlayTimeHours = updateModel.PlayTimeHours;
                 review.Content = updateModel.Content;
                 review.UserName = updateModel.UserName;
                 context.Update(review);
