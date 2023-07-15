@@ -8,8 +8,8 @@ using VideoGameApplication.Servises.ViewModels.CollectionVIewModels;
 
 namespace VideoGameApplication.Servises.Contracts.SmallServices
 {
-	public interface IGameWithTopGenresAndPlayTimeCreator
+	public interface IGameWithStatsCreator
 	{
-		public GameWithTopGenresAndPlayTime CreateGameWithStats(string gameId);
+		public GameWithStats CreateGameWithStats(string gameId);
 	}
 }

@@ -44,7 +44,7 @@ builder.Services.AddScoped<IApiFetcher,ApiFetcher>();
 builder.Services.AddScoped<IApiListChecker,ApiListChecker>();
 builder.Services.AddScoped<ISearchEntities, SearchEntities>();
 builder.Services.AddScoped<IGameSearchFilters, GameSearchFilters>();
-builder.Services.AddScoped<IGameWithTopGenresAndPlayTimeCreator, GameWithTopGenresAndPlayTimeCreator>();
+builder.Services.AddScoped<IGameWithStatsCreator, GameWithStatsCreator>();
 
 builder.Services.ConfigureApplicationCookie(options =>
 {

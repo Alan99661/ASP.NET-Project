@@ -15,9 +15,9 @@ namespace VideoGameApplicationMVC.Controllers
         private readonly IGetSelectModels _getSelectModel;
         private readonly IGetGameStats _gameStats;
         private readonly ISearchEntities _searchEntities;
-        private readonly IGameWithTopGenresAndPlayTimeCreator _GWSCreator;
+        private readonly IGameWithStatsCreator _GWSCreator;
 
-        public GameController(IGameCrudOperations operations, IGetUpdateModels getUpdateModels, IGetSelectModels getSelectModel, IGetGameStats gameStats, ISearchEntities searchEntities , IGameWithTopGenresAndPlayTimeCreator GWSCreator)
+        public GameController(IGameCrudOperations operations, IGetUpdateModels getUpdateModels, IGetSelectModels getSelectModel, IGetGameStats gameStats, ISearchEntities searchEntities , IGameWithStatsCreator GWSCreator)
         {
             this._operations = operations;
             _getUpdateModels = getUpdateModels;

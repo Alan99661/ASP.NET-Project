@@ -10,22 +10,22 @@ using VideoGameApplication.Servises.ViewModels.CollectionVIewModels;
 
 namespace VideoGameApplication.Servises.SmallServices
 {
-	public class GameWithTopGenresAndPlayTimeCreator : IGameWithTopGenresAndPlayTimeCreator
+	public class GameWithStatsCreator : IGameWithStatsCreator
 	{
 
 		private readonly IGetGameStats getGameStats;
 		private readonly IGameCrudOperations operations;
 
-		public GameWithTopGenresAndPlayTimeCreator(IGetGameStats getGameStats, IGameCrudOperations operations)
+		public GameWithStatsCreator(IGetGameStats getGameStats, IGameCrudOperations operations)
 		{
 			this.getGameStats = getGameStats;
 			this.operations = operations;
 		}
 
-		public GameWithTopGenresAndPlayTime CreateGameWithStats(string gameId)
+		public GameWithStats CreateGameWithStats(string gameId)
 		{
 			var game = operations.GetById(gameId);
-			var res = new GameWithTopGenresAndPlayTime()
+			var res = new GameWithStats()
 			{
 				Game = game,
 				TopGenres = getGameStats.GetTopGenres(game),

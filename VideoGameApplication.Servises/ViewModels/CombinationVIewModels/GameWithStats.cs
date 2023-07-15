@@ -9,7 +9,7 @@ using VideoGameApplication.Servises.ViewModels.GenreViewModels;
 
 namespace VideoGameApplication.Servises.ViewModels.CollectionVIewModels
 {
-	public class GameWithTopGenresAndPlayTime: GameWithStatsBase
+	public class GameWithStats: GameWithStatsBase
 	{
 		public List<GenreViewModel> TopGenres { get; set; } 
 		public float? AveragePlayTimeHours { get; set; }
