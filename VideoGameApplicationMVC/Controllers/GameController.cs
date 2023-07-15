@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using VideoGameApplication.Servises.Contracts.CrudOperations;
 using VideoGameApplication.Servises.Contracts.SmallServices;
-using VideoGameApplication.Servises.ViewModels.CollectionVIewModels;
-using VideoGameApplication.Servises.ViewModels.GameViewModels;
 using VideoGameApplication.Servises.ViewModels.GameViewModels;
 using X.PagedList;
 
@@ -17,14 +15,16 @@ namespace VideoGameApplicationMVC.Controllers
         private readonly IGetSelectModels _getSelectModel;
         private readonly IGetGameStats _gameStats;
         private readonly ISearchEntities _searchEntities;
+        private readonly IGameWithTopGenresAndPlayTimeCreator _GWSCreator;
 
-        public GameController(IGameCrudOperations operations, IGetUpdateModels getUpdateModels, IGetSelectModels getSelectModel, IGetGameStats gameStats, ISearchEntities searchEntities)
+        public GameController(IGameCrudOperations operations, IGetUpdateModels getUpdateModels, IGetSelectModels getSelectModel, IGetGameStats gameStats, ISearchEntities searchEntities , IGameWithTopGenresAndPlayTimeCreator GWSCreator)
         {
             this._operations = operations;
             _getUpdateModels = getUpdateModels;
             _getSelectModel = getSelectModel;
             _gameStats = gameStats;
             _searchEntities = searchEntities;
+			_GWSCreator = GWSCreator;
         }
 
         public IActionResult Index()
@@ -44,11 +44,7 @@ namespace VideoGameApplicationMVC.Controllers
         }
         public IActionResult GetById(string id)
         {
-            var game = new GameWithStatsViewModel()
-            {
-                Game = _operations.GetById(id),
-			TopGenres = _gameStats.GetTopGenres(id)
-            };
+            var game = _GWSCreator.CreateGameWithStats(id);
             return View(game);
         }
 		[Authorize(Roles = "Admin")]
@@ -93,11 +89,11 @@ namespace VideoGameApplicationMVC.Controllers
             var models = _getSelectModel.GetGamesSelectModels();
             return Json(models);
         }
-        public IActionResult CheckTopGenres(string id)
-        {
-            var res = _gameStats.GetTopGenres(id);
-            return Json(res);
-        }
+        //public IActionResult CheckTopGenres(string id)
+        //{
+        //    var res = _gameStats.GetTopGenres(id);
+        //    return Json(res);
+        //}
 
         public async Task<IActionResult> SearchGames(GameSearchModel gameSearchModel)
         {

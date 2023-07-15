@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VideoGameApplication.Models.Entities;
 using VideoGameApplication.Servises.ViewModels.GameViewModels;
-using VideoGameApplication.Servises.ViewModels.GenreViewModels;
 
-namespace VideoGameApplication.Servises.ViewModels.CollectionVIewModels
+namespace VideoGameApplication.Servises.Abstractions
 {
-	public class GameWithStatsViewModel
+	public abstract class GameWithStatsBase
 	{
 		public GameViewModel Game { get; set; }
-		public List<GenreViewModel> TopGenres { get; set; } 
 	}
 }
