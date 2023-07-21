@@ -71,54 +71,7 @@
       <div class style="margin:1rem;">
 
           <div class="d-flex justify-content-around hidden">
-            <div class="card">
-              <div class="card-header">
-                Release Date
-              </div>
-              <div class="card-body">
-                <blockquote class="blockquote mb-0">
-                  <p>@Model.Game.ReleaseDate</p>
-                </blockquote>
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="card-header">
-                Game Website
-              </div>
-              <div class="card-body">
-                <blockquote class="blockquote mb-0">
-                  <a href="@Model.Game.GameWebsite">@Model.Game.GameWebsite</a>
-                </blockquote>
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="card-header">
-                Metacritic Rating
-              </div>
-              <div class="card-body">
-                <blockquote class="blockquote mb-0">
-                  <p>@Model.Game.MetacriticRating</p>
-                </blockquote>
-              </div>
-            </div>
-            @if (Model.TopGenres != null && Model.TopGenres.Count != 0)
-            {
-              <div class="card" style="min-height: 2rem;">
-                <div class="card-header">
-                  Top in:
-                </div>
-                <ul class="list-group list-group-flush">
-                  @foreach (var genre in Model.TopGenres)
-                  {
-                    <li class="list-group-item list-group-item-action">
-                      <a asp-action="GetById" asp-controller="Developer" asp-route-id="@genre.Id">@genre.Name Genre</a>
-                    </li>
-                  }
-                </ul>
-              </div>
-            }
+              @Html.Partial("_GameStatCards",Model)
           </div>
 
             <div class="row mt-1 hidden">
